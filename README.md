@@ -1,24 +1,33 @@
-# README
+# e-Life Share
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
+### サイトテーマ
+ライフハックをシェアするSNS
+​
+### テーマを選んだ理由
+日頃からより良い生活や暮らしやすさを追求することが好きですが、情報収集が大変に感じることが多々ありました。
+ライフハックに特化したSNSで、簡単にシェアできて、調べたい情報が簡単に調べられると便利だと考えました。
+このようなサービスがあると、多くの方が気軽に投稿した中から得たい情報が簡単に調べられると他の方の為にもなると思い、このテーマにしました。
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+​
+### ターゲットユーザ
+- ライフハックを簡単にシェアしたい人
+- ライフハックを簡単に調べたい人
+​
+### 主な利用シーン
+- ライフハックを投稿する時
+- ライフハックを調べる時
+​
+## 設計書
+後ほど作成予定
+​
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
+​
+## 使用素材
+著作権を考慮し、架空のデータを扱う予定です。
+なお今後、実在するデータを利用する際には、事前に著作権保持者と契約を結んだ上で利用します。
