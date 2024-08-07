@@ -2,12 +2,14 @@
 
 <% @posts.each do |post| %>
 
+  <%= link_to "/posts/#{post.id}" do %>
+    <div>
+      <%= post.title %>
+    </div>
+    <div>
+      <%= post.body %>
+    </div>
+  <% end %>
 
-  <div>
-    <%= post.title %>
-  </div>
-  <div>
-    <%= post.body %>
-  </div>
 
 <% end %>
