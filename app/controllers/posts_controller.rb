@@ -6,7 +6,7 @@ class PostsController < ApplicationController
   def create
     post = Post.new(post_params)
     post.save
-    redirect_to root_path
+    redirect_to post_path(post.id)
   end
 
   #ログイン前のTopページ
