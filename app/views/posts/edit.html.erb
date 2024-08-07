@@ -8,6 +8,18 @@
   <h4>本文</h4>
   <%= f.text_area :body %>
 
+  <h4>現在の画像</h4>
+  <% if @post.image.attached? %>
+    <%= image_tag @post.image, style: "width: 300px; height: auto;" %>
+
+    <h5>画像を削除</h5>
+    <%= f.check_box :remove_image %>
+    <%= f.label :remove_image, "この画像を削除" %>
+  <% end %>
+
+  <h4>新しい画像を選択</h4>
+  <%= f.file_field :image %>
+
   <%= f.submit '保存' %>
 
 <% end %>
