@@ -11,6 +11,14 @@
   <p>No Image</p>
 <% end %>
 
-<%= link_to "Edit", edit_post_path(@post.id) %>
-<span>│</span>
-<%= link_to "Delete", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+
+<% if @post.user_id == current_user.id %>
+    <td style="width:15%">
+        <%= link_to "Edit", edit_post_path(@post.id) ,class:"btn btn-sm btn-success edit_book_139534" %>
+    </td>
+    <td style="width:15%">
+        <%= link_to "Destroy", post_path(@post.id), method: :delete, "data-confirm" => "本当に消しますか？" ,class:"btn btn-sm btn-danger destroy_book_139534" %>
+    </td>
+<% end %>
+
+

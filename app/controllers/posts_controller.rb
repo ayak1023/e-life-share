@@ -1,10 +1,13 @@
 class PostsController < ApplicationController
+  before_action :is_matching_login_user, only: [:edit, :update, :destroy]
+
   def new
     @post = Post.new
   end
 
   def create
     @post = Post.new(post_params)
+    @post.user_id = current_user.id
     if @post.save
       redirect_to post_path(@post.id), notice: '投稿に成功しました。'
     else
@@ -50,4 +53,12 @@ class PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:title, :body, :image)
   end
+
+  def is_matching_login_user
+    post = Post.find(params[:id])
+    unless post.user_id == current_user.id
+      redirect_to posts_path
+    end
+  end
+
 end
