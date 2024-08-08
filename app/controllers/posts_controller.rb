@@ -39,7 +39,8 @@ class PostsController < ApplicationController
     if @post.update(post_params)
       redirect_to @post, notice: '更新に成功しました。'
     else
-      render :edit, notice: '更新に失敗しました。'
+      flash.now[:alert] = "更新に失敗しました。"
+      render :edit
     end
   end
 

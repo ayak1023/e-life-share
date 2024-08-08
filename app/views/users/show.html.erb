@@ -1,2 +1,40 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+
+
+<div class="container">
+  <div class="row">
+    <!-- ユーザーの詳細 -->
+    <%= render 'side', post: @post, user: @user %>
+
+    <!-- ユーザーの投稿一覧 -->
+    <div class="col-md-8 offset-md-1">
+      <h2>Posts</h2>
+      <table class="table table-hover table-inverse">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Title</th>
+            <th>Opinion</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if @posts.present? %>
+            <% @posts.each do |post| %>
+              <tr>
+                <td>
+                  <%= link_to post_path(post.id) do %>
+                    <%= image_tag post.image.variant(resize_to_fill: [80, 80]).processed if post.image.attached? %>
+                    <%= image_tag 'no_image.jpg', size: '80x80' unless post.image.attached? %>
+                  <% end %>
+                </td>
+                <td><%= link_to post.title, post_path(post.id) %></td>
+                <td><%= post.body %></td>
+              </tr>
+            <% end %>
+          <% else %>
+
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
