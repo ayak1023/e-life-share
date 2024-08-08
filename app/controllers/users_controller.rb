@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :is_matching_login_user, only: [:edit, :update]
 
   def show
     @user = User.find(params[:id])
@@ -13,7 +14,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update(user_params)
       flash[:notice] = "更新に成功しました。"
-      redirect_to user_path(@user)
+      redirect_to user_path(current_user.id)
     else
       flash.now[:alert] = "更新に失敗しました。"
       render :user_path
@@ -27,4 +28,10 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :introduction, :profile_image)
   end
 
+  def is_matching_login_user
+    user = User.find(params[:id])
+    unless user.id == current_user.id
+      redirect_to user_path
+    end
+  end
 end
