@@ -1,13 +1,13 @@
 class ApplicationController < ActionController::Base
-  # before_action :authenticate_user!, except: [:top]
+  before_action :authenticate_user!, except: [:top, :about, :index]
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   def after_sign_in_path_for(resource)
-    root_path #要修正
+    '/posts' #要修正
   end
 
   def after_sign_out_path_for(resource)
-    root_path #要修正
+    '/posts' #要修正
   end
 
   protected

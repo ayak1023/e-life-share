@@ -8,8 +8,9 @@
 <% if @post.image.attached? %>
   <%= image_tag @post.image, style: "width: 300px; height: auto;" %>
 <% else %>
+  <p>No Image</p>
 <% end %>
 
 <%= link_to "Edit", edit_post_path(@post.id) %>
 <span>│</span>
-<%= link_to "削除", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+<%= link_to "Delete", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>

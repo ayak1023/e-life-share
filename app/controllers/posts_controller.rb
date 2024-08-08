@@ -4,9 +4,13 @@ class PostsController < ApplicationController
   end
 
   def create
-    post = Post.new(post_params)
-    post.save
-    redirect_to post_path(post.id)
+    @post = Post.new(post_params)
+    if @post.save
+      redirect_to post_path(@post.id), notice: '投稿に成功しました。'
+    else
+      flash.now[:alert] = "投稿に失敗しました。"
+      render :new
+    end
   end
 
   #ログイン前のTopページ
@@ -30,9 +34,9 @@ class PostsController < ApplicationController
     end
 
     if @post.update(post_params)
-      redirect_to @post, notice: 'Post was successfully updated.'
+      redirect_to @post, notice: '更新に成功しました。'
     else
-      render :edit
+      render :edit, notice: '更新に失敗しました。'
     end
   end
 

@@ -5,7 +5,7 @@
   <%= link_to post_path(post.id) do %>
     <div>
       <% if post.image.attached? %>
-        <%= image_tag post.image, style: "width: 200px; height: auto;" %>
+        <%= image_tag post.image, style: "width: 200px; height: auto;" %><!--画像を小さくかつ、切り抜いて表示させる-->
       <% else %>
       <% end %>
     </div>
