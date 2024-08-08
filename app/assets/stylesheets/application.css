@@ -19,7 +19,7 @@ ul, li {
 }
 
 a {
-  text-decoration: none;
+  text-decoration: none!important;
   color: #2d3133;
 }
 
@@ -36,7 +36,7 @@ body {
 }
 
 .navi_area{
-  color: #6699CC;
+  color: #2d3133;
   background-color: #f7f7f7;
 }
 
@@ -48,15 +48,20 @@ body {
   background-color: #f7f7f7;
 }
 
-.post_btn{
+.post_btn, .update_user_btn, .edit_btn{
   background-color: #6699CC;
 }
 
-.post_btn_txt{
+.post_btn_txt, .update_user_btn, .edit_btn{
   color: #fff;
   font-weight: bold;
 }
-.post_btn:hover{
+.post_btn:hover, .update_user_btn:hover, .edit_btn:hover{
+  color: #fff;
   background-color: #6699CC88;
+}
+
+.normal_btn:hover{
+  color: #2d31335A;
 }
 /*--------------------------------------------*/

@@ -1,34 +1,46 @@
-<!--top-->
-
 <div class="container">
   <div class="row">
+    <div class="col-3"></div>
+      <div class="d-flex flex-column col-7">
+          <% if @posts.present? %>
+            <% @posts.each do |post| %>
+              <% user = post.user %>
 
+              <div class="d-flex p-4 justify-content-center border-bottom ">
+                <div class="mr-4 flex-shrink-0">
+                  <% if user %>
+                      <%= link_to user_path(user.id) do %>
+                        <%= image_tag user.get_profile_image(60, 60), class: "img-fluid rounded-circle", style: "width: 60px; height: 60px; object-fit: cover;" %>
+                      <% end %>
+                  <% end %>
+                </div>
 
-  <div class="col-md-8 offset-md-1">
-    <% @posts.each do |post| %>
-      <% user = post.user %>
-      <% if user %>
-          <%= link_to user_path(user.id) do %>
-            <%= image_tag user.get_profile_image(20, 20) %>
-          <% end %>
-          <%= link_to user_path(user.id) do %>
-            <%= user.name %>
-          <% end %>
-      <% end %>
-      <%= link_to post_path(post.id) do %>
-        <div>
-          <% if post.image.attached? %>
-            <%= image_tag post.image, style: "width: 200px; height: auto;" %><!--画像を小さくかつ、切り抜いて表示させる-->
+                <div class="w-100">
+                  <% if user %>
+                    <span>
+                      <%= link_to user_path(user.id) do %>
+                        <b><%= user.name %></b>
+                      <% end %>
+                    </span>
+                  <% end %>
+                  <div class="mt-1">
+                    <h3><%= link_to post.title, post_path(post.id) %></h3>
+                  </div>
+                  <div class="mt-1">
+                    <%= post.body %>
+                  </div>
+
+                  <div class="mt-2">
+                    <%= link_to post_path(post.id) do %>
+                      <%= image_tag(post.image.variant(resize_to_fill: [400, 400]).processed, class: "rounded img-fluid") if post.image.attached? %>
+
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
           <% else %>
-          <% end %>
-        </div>
-        <div>
-          <%= post.title %>
-        </div>
-        <div>
-          <%= post.body %>
-        </div>
-      <% end %>
-    <% end %>
+        <% end %>
+    </div>
   </div>
-
+</div>

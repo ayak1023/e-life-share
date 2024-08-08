@@ -6,35 +6,46 @@
     <%= render 'side', user: @user %>
 
     <!-- ユーザーの投稿一覧 -->
-    <div class="col-md-8 offset-md-1">
-      <h2>Posts</h2>
-      <table class="table table-hover table-inverse">
-        <thead>
-          <tr>
-            <th></th>
-            <th>Title</th>
-            <th>Opinion</th>
-          </tr>
-        </thead>
-        <tbody>
+    <div class="col-md-8 offset-md-1 d-flex flex-column align-items-center">
           <% if @posts.present? %>
             <% @posts.each do |post| %>
-              <tr>
-                <td>
-                  <%= link_to post_path(post.id) do %>
-                    <%= image_tag post.image.variant(resize_to_fill: [80, 80]).processed if post.image.attached? %>
-                    <%= image_tag 'no_image.jpg', size: '80x80' unless post.image.attached? %>
+              <% user = post.user %>
+
+              <div class="d-flex p-4 justify-content-center border-bottom ">
+                <div class="mr-4 flex-shrink-0">
+                  <% if user %>
+                      <%= link_to user_path(user.id) do %>
+                        <%= image_tag user.get_profile_image(60, 60), class: "img-fluid rounded-circle", style: "width: 60px; height: 60px; object-fit: cover;" %>
+                      <% end %>
                   <% end %>
-                </td>
-                <td><%= link_to post.title, post_path(post.id) %></td>
-                <td><%= post.body %></td>
-              </tr>
+                </div>
+
+                <div class="w-100">
+                  <% if user %>
+                    <span>
+                      <%= link_to user_path(user.id) do %>
+                        <b><%= user.name %></b>
+                      <% end %>
+                    </span>
+                  <% end %>
+                  <div class="mt-1">
+                    <h3><%= link_to post.title, post_path(post.id) %></h3>
+                  </div>
+                  <div class="mt-1">
+                    <%= post.body %>
+                  </div>
+
+                  <div class="mt-2">
+                    <%= link_to post_path(post.id) do %>
+                      <%= image_tag(post.image.variant(resize_to_fill: [400, 400]).processed, class: "rounded img-fluid") if post.image.attached? %>
+                      <%= image_tag 'no_image.jpg', size: '400x400' unless post.image.attached? %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
             <% end %>
           <% else %>
-
           <% end %>
-        </tbody>
-      </table>
     </div>
   </div>
 </div>

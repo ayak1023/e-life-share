@@ -1,9 +1,9 @@
     <div class="col6 col-md-3">
       <h2>User info</h4>
         <% if user %>
-          <div class="mt-4">
+          <div class="mt-4 text-center">
             <%= link_to user_path(user.id) do %>
-              <%= image_tag user.get_profile_image(20, 20) %>
+              <%= image_tag user.get_profile_image(150, 150) ,class: "img-fluid rounded-circle", style: "width: 150px; height: 150px; object-fit: cover;"%>
             <% end %>
           </div>
           <div class="mt-4">

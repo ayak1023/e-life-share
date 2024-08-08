@@ -1,24 +1,37 @@
-<h2>Title</h2>
-<p><%= @post.title %></p>
+<div class="container">
+      <div class="d-flex flex-row justify-content-center">
+        <div class="col-6">
+          <div class="py-3">
+            <%= link_to '/posts' ,class:"btn" do %>
+              <i class="fa-solid fa-xmark fa-xl normal_btn "></i>
+            <% end %>
+          </div>
+          <div class="text-center">
+            <% if @post.image.attached? %>
+              <%= image_tag @post.image, class: "img-fluid rounded" , style: "width: 300px; height: auto;" %>
+            <% else %>
+              <p>No Image</p>
+            <% end %>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="py-3 d-flex justify-content-end align-items-center">
+            <% if @post.user_id == current_user.id %>
+              <%= link_to post_path(@post.id), method: :delete, "data-confirm" => "本当に消しますか？" ,class:"mr-4" do %>
+                <i class="fa-solid fa-trash fa-xl normal_btn"></i>
+              <% end %>
+              <%= link_to "編集", edit_post_path(@post.id) ,class:"btn edit_btn" %>
+              <% else %>
+              <div class="py-3"></div>
+            <% end %>
+          </div>
+          <h2 class="mb-2">Title</h2>
+          <p class="mb-2"><%= @post.title %></p>
 
-<h2>body</h2>
-<p><%= @post.body %></p>
-
-<h2>image</h2>
-<% if @post.image.attached? %>
-  <%= image_tag @post.image, style: "width: 300px; height: auto;" %>
-<% else %>
-  <p>No Image</p>
-<% end %>
-
-
-<% if @post.user_id == current_user.id %>
-    <td style="width:15%">
-        <%= link_to "Edit", edit_post_path(@post.id) ,class:"btn btn-sm btn-success edit_book_139534" %>
-    </td>
-    <td style="width:15%">
-        <%= link_to "Destroy", post_path(@post.id), method: :delete, "data-confirm" => "本当に消しますか？" ,class:"btn btn-sm btn-danger destroy_book_139534" %>
-    </td>
-<% end %>
+          <h2 class="mb-2">Body</h2>
+          <p class="mb-2"><%= @post.body %></p>
+        </div>
+      </div>
+</div>
 
 
