@@ -1,25 +1,35 @@
     <div class="col6 col-md-3">
       <h2>User info</h4>
-      <%= image_tag user.get_profile_image(100,100) %>
-      <table class="table"><tbody>
-        <tr>
-          <th>name</th>
-            <th><%= user.name %></th>
-        </tr>
-        <tr>
-          <th>introduction</th>
-          <th><%= user.introduction %></th>
-        </tr>
-      </tbody></table>
+        <% if user %>
+          <div class="mt-4">
+            <%= link_to user_path(user.id) do %>
+              <%= image_tag user.get_profile_image(20, 20) %>
+            <% end %>
+          </div>
+          <div class="mt-4">
+            <p><b>Name</b></p>
+            <p><%= user.name %></p>
+          </div>
+          <div class="mt-2 mb-4">
+            <p><b>Introduction</b></p>
+            <p><%= user.introduction %></p>
+          </div>
+        <% end %>
 
-      <% if @user == current_user %>
+      <% if user == current_user %>
         <div class="row">
-            <%= link_to edit_user_path(user.id) ,class:"btn btn-outline-secondary btn-block edit_user_177899" do %>
-              <i class="fa-solid fa-user-gear fa-sm" style="color: currentColor"></i>
+            <%= link_to edit_user_path(user.id) ,class:"btn btn-outline-secondary btn-block user_btn" do %>
+              <i class="fa-solid fa-user-gear fa-sm"></i><span> プロフィールを編集</span>
             <% end %>
 
-            <%= link_to "退会",user_path(current_user.id), class: "destroy-user", method: :delete, "data-confirm" => "本当に退会しますか？" %>
-
+            <%= link_to user_path(current_user.id), method: :delete, data: { confirm: "本当に退会しますか？" }, class:"btn btn-outline-secondary btn-block user_btn" do %>
+              <i class="fa-solid fa-user-xmark fa-sm"></i><span> 退会する</span>
+            <% end %>
+        </div>
+        <div class="row mt-4">
+          <%= link_to new_post_path ,class:"btn btn-block post_btn" do %>
+            <span class="post_btn_txt">ポストする</span>
+          <% end %>
         </div>
       <% end %>
     </div>

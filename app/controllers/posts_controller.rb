@@ -19,6 +19,7 @@ class PostsController < ApplicationController
   #ログイン前のTopページ
   def index
     @posts = Post.all
+    
   end
 
   def show
@@ -47,7 +48,7 @@ class PostsController < ApplicationController
   def destroy
     post = Post.find(params[:id])
     post.destroy
-    redirect_to '/posts'
+    redirect_to root_path
   end
 
   private

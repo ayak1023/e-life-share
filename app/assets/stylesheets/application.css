@@ -37,6 +37,26 @@ body {
 
 .navi_area{
   color: #6699CC;
+  background-color: #f7f7f7;
 }
 
+.user_btn{
+
+}
+
+.user_btn:hover{
+  background-color: #f7f7f7;
+}
+
+.post_btn{
+  background-color: #6699CC;
+}
+
+.post_btn_txt{
+  color: #fff;
+  font-weight: bold;
+}
+.post_btn:hover{
+  background-color: #6699CC88;
+}
 /*--------------------------------------------*/
