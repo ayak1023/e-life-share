@@ -1,7 +1,13 @@
+
 <h1>投稿一覧</h1>
 
 <% @posts.each do |post| %>
-
+  <% user = post.user %>
+  <% if user %>
+      <%= link_to user_path(user.id) do %>
+        <%= image_tag user.get_profile_image(20, 20) %>
+      <% end %>
+  <% end %>
   <%= link_to post_path(post.id) do %>
     <div>
       <% if post.image.attached? %>

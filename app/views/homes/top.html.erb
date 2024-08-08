@@ -1,2 +1,31 @@
-<h1>Homes#top</h1>
-<p>Find me in app/views/homes/top.html.erb</p>
+<!--top-->
+
+<h1>投稿一覧</h1>
+
+<% @posts.each do |post| %>
+  <% user = post.user %>
+  <% if user %>
+      <%= link_to user_path(user.id) do %>
+        <%= image_tag user.get_profile_image(20, 20) %>
+      <% end %>
+      <%= link_to user_path(user.id) do %>
+        <%= user.name %>
+      <% end %>
+  <% end %>
+  <%= link_to post_path(post.id) do %>
+    <div>
+      <% if post.image.attached? %>
+        <%= image_tag post.image, style: "width: 200px; height: auto;" %><!--画像を小さくかつ、切り抜いて表示させる-->
+      <% else %>
+      <% end %>
+    </div>
+    <div>
+      <%= post.title %>
+    </div>
+    <div>
+      <%= post.body %>
+    </div>
+  <% end %>
+
+
+<% end %>

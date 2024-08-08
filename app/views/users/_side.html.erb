@@ -17,6 +17,9 @@
             <%= link_to edit_user_path(user.id) ,class:"btn btn-outline-secondary btn-block edit_user_177899" do %>
               <i class="fa-solid fa-user-gear fa-sm" style="color: currentColor"></i>
             <% end %>
+
+            <%= link_to "退会",user_path(current_user.id), class: "destroy-user", method: :delete, "data-confirm" => "本当に退会しますか？" %>
+
         </div>
       <% end %>
     </div>
