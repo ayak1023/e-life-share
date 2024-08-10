@@ -1,38 +1,58 @@
 <div class="container">
-      <div class="d-flex flex-row justify-content-center">
-        <div class="col-6">
-          <div class="py-3">
-            <%= link_to '/posts' ,class:"btn" do %>
-              <i class="fa-solid fa-xmark fa-xl normal_btn "></i>
-            <% end %>
-          </div>
-          <div class="text-center">
-
-            <% if @post.image.attached? %>
-              <%= image_tag @post.image, class: "img-fluid rounded" , style: "width: 300px; height: auto;" %>
-            <% else %>
-              <p>No Image</p>
-            <% end %>
-          </div>
-        </div>
-        <div class="col-6">
-          <div class="py-3 d-flex justify-content-end align-items-center">
-            <% if @post.user_id == current_user.id %>
-              <%= link_to post_path(@post.id), method: :delete, "data-confirm" => "本当に消しますか？" ,class:"mr-4" do %>
-                <i class="fa-solid fa-trash fa-xl normal_btn"></i>
-              <% end %>
-              <%= link_to "編集", edit_post_path(@post.id) ,class:"btn edit_btn" %>
-              <% else %>
-              <div class="py-3"></div>
-            <% end %>
-          </div>
-          <h2 class="mb-2">Title</h2>
-          <p class="mb-2"><%= @post.title %></p>
-
-          <h2 class="mb-2">Body</h2>
-          <p class="mb-2"><%= @post.body %></p>
-        </div>
+  <div class="d-flex justify-content-between">
+    <div class="py-3">
+      <%= link_to '/posts' ,class:"btn" do %>
+        <i class="fa-solid fa-xmark fa-xl normal_btn "></i>
+      <% end %>
+    </div>
+    <div class="py-3 d-flex justify-content-end align-items-center">
+      <% if @post.user_id == current_user.id %>
+        <%= link_to post_path(@post.id), method: :delete, "data-confirm" => "本当に消しますか？" ,class:"mr-4" do %>
+          <i class="fa-solid fa-trash fa-xl normal_btn"></i>
+        <% end %>
+          <%= link_to "編集", edit_post_path(@post.id) ,class:"btn edit_btn" %>
+        <% else %>
+          <div class="py-3"></div>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-6 py-3">
+    <div class="d-flex flex-row align-items-center">
+      <div class="mr-3">
+        <% if @user %>
+          <%= link_to user_path(@user.id) do %>
+              <%= image_tag @user.get_profile_image(60, 60), class: "img-fluid rounded-circle", style: "width: 60px; height: 60px; object-fit: cover;" %>
+          <% end %>
+        <% end %>
       </div>
+      <div>
+        <% if @user %>
+          <span>
+            <%= link_to user_path(@user.id) do %>
+              <b><%= @user.name %></b>
+            <% end %>
+          </span>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex flex-row justify-content-center">
+    <div class="col-6">
+      <div class="text-center">
+        <% if @post.image.attached? %>
+          <%= image_tag @post.image, class: "img-fluid rounded" , style: "width: 300px; height: auto;" %>
+        <% else %>
+          <p>No Image</p>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-6">
+      <h2 class="mb-2">Title</h2>
+      <p class="mb-2"><%= @post.title %></p>
+      <h2 class="mb-2">Body</h2>
+      <p class="mb-2"><%= @post.body %></p>
+    </div>
+  </div>
 </div>
 
 

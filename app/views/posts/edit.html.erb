@@ -1,56 +1,65 @@
 <div class="container">
-  <h3>投稿を編集</h3>
 
-  <% if @post.errors.any? %>
-    <%= @post.errors.count %>件のエラーが発生しました
-    <ul>
-      <% @post.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  <% end %>
-  <%= form_with model: @post, url: post_path(@post), method: :patch do |f| %>
-    <div class="d-flex flex-row justify-content-center">
-      <div class="col-6">
-        <div class="py-3">
-          <%= link_to post_path(@post.id) ,class:"btn" do %>
-            <i class="fa-solid fa-xmark fa-xl normal_btn "></i>
-          <% end %>
-        </div>
-        <div class="mx-auto">
-          <h4 class="mb-2">Image</h4>
-          <div class="mb-2">
-            <% if @post.image.attached? %>
-              <div class="mb-2">
-                <%= image_tag @post.image, class: "img-fluid rounded" , style: "width: 300px; height: auto;" %>
-              </div>
-              <div class="mb-2">
-                <%= f.check_box :remove_image %>
-                <%= f.label :remove_image, "現在の画像を削除する" %>
-              </div>
-            <% else %>
-              <p>No Image</p>
-            <% end %>
-          </div>
-          <p class="mb-2"><b>新しい画像を選択</b></p>
-          <%= f.file_field :image ,accept: "image/*" , class:"form-control-file" %>
-        </div>
-      </div>
-      <div class="col-6">
-        <div class="py-3 d-flex justify-content-end align-items-center">
-          <%= f.submit '保存' %>
-        </div>
-        <div class="mb-2">
-          <h4 class="mb-2">Title</h4>
-          <%= f.text_field :title ,class:"form-control" %>
-        </div>
-        <div class="mb-2">
-          <h4 class="mb-2">Body</h4>
-          <%= f.text_area :body ,class:"form-control" %>
-        </div>
-      </div>
+  <div class="d-flex justify-content-between py-3">
+    <div>
+      <h3>投稿を編集</h3>
     </div>
-  <% end %>
+    <div class="">
+      <%= link_to post_path(@post.id) ,class:"btn" do %>
+        <i class="fa-solid fa-xmark fa-xl normal_btn "></i>
+      <% end %>
+    </div>
+  </div>
 
 
+  <div class="">
+    <% if @post.errors.any? %>
+      <%= @post.errors.count %>件のエラーが発生しました
+      <ul>
+        <% @post.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+
+  <div class="py-3">
+    <%= form_with model: @post, url: post_path(@post), method: :patch do |f| %>
+      <div class="d-flex flex-row justify-content-center">
+        <div class="col pl-0">
+          <div class="mx-auto">
+            <h5 class="mb-2">Image</h5>
+            <div class="mb-2">
+              <% if @post.image.attached? %>
+                <div class="mb-2">
+                  <%= image_tag @post.image, class: "img-fluid rounded" , style: "width: 300px; height: auto;" %>
+                </div>
+                <div class="mb-2">
+                  <%= f.check_box :remove_image %>
+                  <%= f.label :remove_image, "現在の画像を削除する" %>
+                </div>
+              <% else %>
+                <p>No Image</p>
+              <% end %>
+            </div>
+            <p class="mb-2"><b>新しい画像を選択</b></p>
+            <%= f.file_field :image ,accept: "image/*" , class:"form-control-file" %>
+          </div>
+        </div>
+        <div class="col pr-0">
+          <div class="mb-2">
+            <h5 class="mb-2">Title</h5>
+            <%= f.text_field :title ,class:"form-control" %>
+          </div>
+          <div class="mb-2">
+            <h5 class="mb-2">Body</h5>
+            <%= f.text_area :body ,class:"form-control" %>
+          </div>
+          <div class="py-3 text-right">
+            <%= f.submit '保存' ,class:"btn btn_bg_b" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>

@@ -1,35 +1,40 @@
-    <div class="col6 col-md-3 pt-4">
-      <h5>User info</h5>
-        <% if user %>
-          <div class="mt-4 text-center">
-            <%= link_to user_path(user.id) do %>
-              <%= image_tag user.get_profile_image(150, 150) ,class: "img-fluid rounded-circle", style: "width: 150px; height: 150px; object-fit: cover;"%>
-            <% end %>
-          </div>
-          <div class="mt-4">
-            <p><b>Name</b></p>
-            <p><%= user.name %></p>
-          </div>
-          <div class="mt-2 mb-4">
-            <p><b>Introduction</b></p>
-            <p><%= user.introduction %></p>
-          </div>
-        <% end %>
+<div class="col6 col-md-3 pt-4">
+  <% if user == current_user %>
+    <h5>Your Profile</h5>
+  <% else %>
+    <h5>User Profile</h5>
+  <% end %>
 
-      <% if user == current_user %>
-        <div class="row">
-            <%= link_to edit_user_path(user.id) ,class:"btn btn-outline-secondary btn-block user_btn" do %>
-              <i class="fa-solid fa-user-gear fa-sm"></i><span> プロフィールを編集</span>
-            <% end %>
-
-            <%= link_to user_path(current_user.id), method: :delete, data: { confirm: "本当に退会しますか？" }, class:"btn btn-outline-secondary btn-block user_btn" do %>
-              <i class="fa-solid fa-user-xmark fa-sm"></i><span> 退会する</span>
-            <% end %>
-        </div>
-        <div class="row mt-4">
-          <%= link_to new_post_path ,class:"btn btn-block post_btn" do %>
-            <span class="post_btn_txt">ポストする</span>
-          <% end %>
-        </div>
+  <% if user %>
+    <div class="mt-4 text-center">
+      <%= link_to user_path(user.id) do %>
+        <%= image_tag user.get_profile_image(150, 150) ,class: "img-fluid rounded-circle", style: "width: 150px; height: 150px; object-fit: cover;"%>
       <% end %>
     </div>
+    <div class="mt-4">
+      <p><b>Name</b></p>
+      <p><%= user.name %></p>
+    </div>
+    <div class="mt-2 mb-4">
+      <p><b>Introduction</b></p>
+      <p><%= user.introduction %></p>
+    </div>
+  <% end %>
+
+  <% if user == current_user %>
+    <div class="row">
+        <%= link_to edit_user_path(user.id) ,class:"btn btn-outline-secondary btn-block user_btn" do %>
+          <i class="fa-solid fa-user-gear fa-sm"></i><span> プロフィールを編集</span>
+        <% end %>
+
+        <%= link_to user_path(current_user.id), method: :delete, data: { confirm: "本当に退会しますか？" }, class:"btn btn-outline-secondary btn-block user_btn" do %>
+          <i class="fa-solid fa-user-xmark fa-sm"></i><span> 退会する</span>
+        <% end %>
+    </div>
+    <div class="row mt-4">
+      <%= link_to new_post_path ,class:"btn btn-block post_btn" do %>
+        <span class="post_btn_txt">ポストする</span>
+      <% end %>
+    </div>
+  <% end %>
+</div>

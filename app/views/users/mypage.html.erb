@@ -1,0 +1,10 @@
+<div class="container">
+  <div class="row">
+    <!-- ユーザーの詳細 -->
+    <%= render 'users/side', user: current_user %>
+    <!-- ユーザーの投稿一覧 -->
+    <div class="col-md-8 offset-md-1 d-flex flex-column ">
+      <%= render 'posts/posts_index', posts: @posts %>
+    </div>
+  </div>
+</div>

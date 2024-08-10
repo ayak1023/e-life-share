@@ -23,7 +23,7 @@
             <% if user_signed_in? %>
               <ul class="navbar-nav ml-auto">
                 <li>
-                  <%= link_to '/posts' ,class:"nav-link" do %><!--要修正-->
+                  <%= link_to mypage_path ,class:"nav-link" do %><!--要修正-->
                     <span>Home</span>
                   <% end %>
                 </li>
@@ -79,7 +79,9 @@
       <div class="container">
 
           <% flash.each do |message_type, message| %>
-            <div class="flash-message <%= message_type %>"><%= message %></div>
+            <div class="flash-message <%= message_type %>">
+              <%= message %>
+            </div>
           <% end %>
 
       </div>
@@ -87,6 +89,7 @@
         <%= yield %>
       </div>
     </div>
+
     <footer class="footer_bg">
       <div class='container'>
       	<div class='row align-items-center'>

@@ -19,11 +19,11 @@ class PostsController < ApplicationController
   #ログイン前のTopページ
   def index
     @posts = Post.all
-    
   end
 
   def show
     @post = Post.find(params[:id])
+    @user = @post.user
   end
 
   def edit
