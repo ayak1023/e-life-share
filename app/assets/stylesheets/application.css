@@ -40,23 +40,22 @@ body {
   background-color: #f7f7f7;
 }
 
-.user_btn{
-
-}
 
 .user_btn:hover{
   background-color: #f7f7f7;
 }
 
-.post_btn, .update_user_btn, .edit_btn{
+.post_btn, .update_user_btn, .edit_btn, .btn_bg_b{
   background-color: #6699CC;
-}
-
-.post_btn_txt, .update_user_btn, .edit_btn{
   color: #fff;
   font-weight: bold;
 }
-.post_btn:hover, .update_user_btn:hover, .edit_btn:hover{
+
+.post_btn_txt{
+  color: #fff;
+  font-weight: bold;
+}
+.post_btn:hover, .update_user_btn:hover, .edit_btn:hover, .btn_bg_b:hover{
   color: #fff;
   background-color: #6699CC88;
 }
@@ -64,4 +63,9 @@ body {
 .normal_btn:hover{
   color: #2d31335A;
 }
+
+.footer_bg{
+  background-color: #66CC99;
+}
+
 /*--------------------------------------------*/
