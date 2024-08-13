@@ -1,16 +1,15 @@
 <div class="container">
-  <div class="row">
-    <div class="col-6 mx-auto">
-      <h2>プロフィールを編集</h2>
-      <% if @user.errors.any? %>
-        <h3><%= @user.errors.count %>errors prohibited this obj from being saved:</h3>
-        <ul>
+  <div class="col-6">
+    <% if @user.errors.any? %>
+      <h5><%= @user.errors.count %>errors prohibited this obj from being saved:</h5>
+        <ul class="list_style_error">
           <% @user.errors.full_messages.each do |message| %>
             <li><%= message %></li>
           <% end %>
         </ul>
-      <% end %>
-
+    <% end %>
+    <div class="mt-4">
+      <h2>プロフィールを編集</h2>
       <%= form_with model: @user do |f| %>
         <div class="form-group mt-4">
           <label for="userName">Name</label>
@@ -24,7 +23,12 @@
           <label for="userImage">Image</label>
           <%= f.file_field :profile_image, id:"user_profile_image", placeholder: "プロフィール画像", accept: "image/*" , class:"form-control-file" %>
         </div>
-        <%= f.submit "Update User",class:"btn update_user_btn" %>
+        <div class="d-flex justify-content-between pt-2">
+          <%= f.submit "更新する",class:"btn update_user_btn" %>
+          <%= link_to user_path(current_user.id), method: :delete, data: { confirm: "本当に退会しますか？" }, class:"btn btn-outline-secondary user_btn" do %>
+            <i class="fa-solid fa-user-xmark fa-sm"></i><span> 退会する</span>
+          <% end %>
+        </div>
       <% end %>
     </div>
   </div>

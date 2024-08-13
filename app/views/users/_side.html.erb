@@ -26,10 +26,6 @@
         <%= link_to edit_user_path(user.id) ,class:"btn btn-outline-secondary btn-block user_btn" do %>
           <i class="fa-solid fa-user-gear fa-sm"></i><span> プロフィールを編集</span>
         <% end %>
-
-        <%= link_to user_path(current_user.id), method: :delete, data: { confirm: "本当に退会しますか？" }, class:"btn btn-outline-secondary btn-block user_btn" do %>
-          <i class="fa-solid fa-user-xmark fa-sm"></i><span> 退会する</span>
-        <% end %>
     </div>
     <div class="row mt-4">
       <%= link_to new_post_path ,class:"btn btn-block post_btn" do %>

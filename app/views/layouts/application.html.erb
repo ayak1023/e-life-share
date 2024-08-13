@@ -23,13 +23,18 @@
             <% if user_signed_in? %>
               <ul class="navbar-nav ml-auto">
                 <li>
-                  <%= link_to mypage_path ,class:"nav-link" do %><!--要修正-->
+                  <%= link_to root_path ,class:"nav-link" do %><!--要修正-->
                     <span>Home</span>
                   <% end %>
                 </li>
                 <li>
                   <%= link_to about_path ,class:"nav-link text-light" do %>
                     <span>About</span>
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to mypage_path ,class:"nav-link" do %><!--要修正-->
+                    <span>My page</span>
                   <% end %>
                 </li>
                 <li>
@@ -40,6 +45,11 @@
                 <li>
                   <%= link_to root_path ,class:"nav-link" do%><!--要修正-->
                     <span>Favorite</span>
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to new_post_path ,class:"nav-link" do%><!--要修正-->
+                    <span>New Post</span>
                   <% end %>
                 </li>
                 <li>
@@ -77,13 +87,11 @@
 
     <div class="main mb-auto pb-5">
       <div class="container">
-
           <% flash.each do |message_type, message| %>
             <div class="flash-message <%= message_type %>">
               <%= message %>
             </div>
           <% end %>
-
       </div>
       <div class="pb-5">
         <%= yield %>

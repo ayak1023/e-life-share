@@ -3,7 +3,7 @@
   <% posts.each do |post| %>
     <% user = post.user %>
 
-    <div class="d-flex p-4 justify-content-center border-bottom ">
+    <div class="d-flex p-4 border-bottom w-100">
       <div class="mr-4 flex-shrink-0">
         <% if user %>
           <%= link_to user_path(user.id) do %>
@@ -12,7 +12,7 @@
         <% end %>
       </div>
 
-      <div class="w-100">
+      <div>
         <% if user %>
           <span>
             <%= link_to user_path(user.id) do %>

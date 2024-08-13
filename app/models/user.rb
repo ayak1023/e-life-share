@@ -9,7 +9,7 @@ class User < ApplicationRecord
   #has_many :comments, dependent: :destroy
   #has_many :favorites, dependent: :destroy
 
-  validates :name, uniqueness: true, length: { in: 2..20 }
+  validates :name, presence: true, uniqueness: true, length: { in: 2..20 }
   validates :introduction, length: { maximum: 50 }
 
   def get_profile_image(width, height)

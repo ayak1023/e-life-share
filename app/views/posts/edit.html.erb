@@ -1,6 +1,16 @@
 <div class="container">
+  <div class="">
+    <% if @post.errors.any? %>
+      <h5><%= @post.errors.count %>件のエラーが発生しました</h5>
+      <ul class="list_style_error">
+        <% @post.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
 
-  <div class="d-flex justify-content-between py-3">
+  <div class="d-flex justify-content-between mt-4">
     <div>
       <h3>投稿を編集</h3>
     </div>
@@ -11,19 +21,7 @@
     </div>
   </div>
 
-
-  <div class="">
-    <% if @post.errors.any? %>
-      <%= @post.errors.count %>件のエラーが発生しました
-      <ul>
-        <% @post.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    <% end %>
-  </div>
-
-  <div class="py-3">
+  <div class="py-2">
     <%= form_with model: @post, url: post_path(@post), method: :patch do |f| %>
       <div class="d-flex flex-row justify-content-center">
         <div class="col pl-0">
@@ -56,7 +54,12 @@
             <%= f.text_area :body ,class:"form-control" %>
           </div>
           <div class="py-3 text-right">
-            <%= f.submit '保存' ,class:"btn btn_bg_b" %>
+            <span class="mr-3">
+              <%= link_to post_path(@post.id), method: :delete, "data-confirm" => "本当に消しますか？" do %>
+                <i class="fa-solid fa-trash fa-xl normal_btn"></i>
+              <% end %>
+            </span>
+            <%= f.submit '更新する' ,class:"btn btn_bg_b" %>
           </div>
         </div>
       </div>

@@ -7,10 +7,8 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_out_path_for(resource)
-    root_path
+    about_path
   end
-
-  add_flash_types :secondary, :success, :danger, :warning, :info, :light, :dark
 
   protected
   def configure_permitted_parameters

@@ -87,4 +87,11 @@ body {
   border: solid 1px #930403;
 }
 
-/*--------------------------------------------*/
+/*---error-----------------------------------------*/
+.list_style_error{
+  padding-left: 1.2em;
+  margin-top: 1em;
+}
+.list_style_error li{
+  list-style-type: disc!important;
+}
