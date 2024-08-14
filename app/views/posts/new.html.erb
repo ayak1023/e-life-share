@@ -1,15 +1,15 @@
 <div class="container">
   <% if @post.errors.any? %>
-    <h5><%= @post.errors.count %>件のエラーが発生しました</h5>
-    <ul class="list_style_error">
+    <h5 class="text-danger"><%= @post.errors.count %>件のエラーが発生しました</h5>
+    <ul class="list_style_error pl-4 mt-2">
       <% @post.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+        <li class="text-danger"><%= message %></li>
       <% end %>
     </ul>
   <% end %>
 
   <h2 class="mt-4">New Post</h2>
-  <div class="col-4">
+  <div class="row m-auto">
 
     <div class="my-2">
       <%= form_with model: Post.new do |f| %>

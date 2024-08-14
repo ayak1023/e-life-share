@@ -71,8 +71,8 @@ body {
 /*フラッシュメッセージ--------------------------------------------*/
 .flash-message {
   border-radius: 5px;
-  padding: 16px 24px;
-  margin: 16px 0px;
+  padding: .5em 1em;
+  margin: 1em 0;
 }
 
 .flash-message.notice {
@@ -88,10 +88,7 @@ body {
 }
 
 /*---error-----------------------------------------*/
-.list_style_error{
-  padding-left: 1.2em;
-  margin-top: 1em;
-}
+
 .list_style_error li{
   list-style-type: disc!important;
 }
