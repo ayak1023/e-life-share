@@ -23,7 +23,7 @@
             <% if user_signed_in? %>
               <ul class="navbar-nav ml-auto">
                 <li>
-                  <%= link_to root_path ,class:"nav-link" do %><!--要修正-->
+                  <%= link_to root_path ,class:"nav-link" do %>
                     <span>Home</span>
                   <% end %>
                 </li>
@@ -33,22 +33,13 @@
                   <% end %>
                 </li>
                 <li>
-                  <%= link_to mypage_path ,class:"nav-link" do %><!--要修正-->
+                  <%= link_to mypage_path ,class:"nav-link" do %>
                     <span>My Page</span>
                   <% end %>
                 </li>
+
                 <li>
-                    <%= link_to root_path ,class:"nav-link" do %><!--要修正-->
-                    <span>Users</span>
-                  <% end %>
-                </li>
-                <li>
-                  <%= link_to root_path ,class:"nav-link" do%><!--要修正-->
-                    <span>Favorite</span>
-                  <% end %>
-                </li>
-                <li>
-                  <%= link_to new_post_path ,class:"nav-link" do%><!--要修正-->
+                  <%= link_to new_post_path ,class:"nav-link" do%>
                     <span>New Post</span>
                   <% end %>
                 </li>

@@ -20,7 +20,11 @@ ul, li {
 
 a {
   text-decoration: none!important;
-  color: #2d3133;
+  color: #6c6b6b;
+}
+
+a:hover{
+  color: #6c6b6b;
 }
 
 h1, h2, h3, h4, h5, h6, p {
@@ -33,6 +37,10 @@ h1, h2, h3, h4, h5, h6, p {
 body {
   color: #2d3133;
   margin: 0;
+}
+
+.fs_08{
+  font-size: 0.8em;
 }
 
 .navi_area{

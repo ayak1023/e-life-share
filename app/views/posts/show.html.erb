@@ -12,7 +12,7 @@
       <div class="mr-3">
         <% if @user %>
           <%= link_to user_path(@user.id) do %>
-              <%= image_tag @user.get_profile_image(60, 60), class: "img-fluid rounded-circle", style: "width: 60px; height: 60px; object-fit: cover;" %>
+              <%= image_tag @user.get_profile_image(100, 100), class: "img-fluid rounded-circle", style: "width: 40px; height: 40px; object-fit: cover;" %>
           <% end %>
         <% end %>
       </div>
@@ -52,6 +52,7 @@
       <p class="mb-2"><%= @post.title %></p>
       <h2 class="mb-2">Body</h2>
       <p class="mb-2"><%= @post.body %></p>
+      <p class="text-right"><%= @post.created_at.strftime('%Y/%m/%d') %></p>
     </div>
   </div>
 </div>
