@@ -39,6 +39,10 @@ body {
   margin: 0;
 }
 
+.fs_2{
+  font-size: 2em;
+}
+
 .fs_08{
   font-size: 0.8em;
 }
@@ -46,8 +50,17 @@ body {
 .navi_area{
   color: #2d3133;
   background-color: #f7f7f7;
+  font-weight: bold;
 }
 
+.navi_area ul li {
+  font-size:1.1em;
+  margin-right: 1em;
+}
+
+.color_green{
+  color: #66CC99;
+}
 
 .user_btn:hover{
   background-color: #f7f7f7;
