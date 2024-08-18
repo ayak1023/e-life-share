@@ -45,7 +45,7 @@
                     <span>New Post</span>
                   <% end %>
                 </li>
-                <li>
+                <li class="mr-0">
                   <%= link_to destroy_user_session_path,class:"nav-link", method: :delete do %>
                     <span class="mr-2">Log out</span><i class="fa-solid fa-right-from-bracket" style="color: #6c6b6b;"></i>
                   <% end %>
@@ -70,7 +70,7 @@
                     <span>Sign up</span>
                   <% end %>
                 </li>
-                <li>
+                <li class="mr-0">
                   <%= link_to new_user_session_path ,class:"nav-link text-light" do %>
                     <span class="mr-2">Log in</span><i class="fa-solid fa-right-to-bracket" style="color: #6c6b6b;"></i>
                   <% end %>
@@ -81,6 +81,24 @@
         </div>
       </navi>
     </header>
+    <div class="container mb-3">
+      <div class="d-flex justify-content-end">
+        <% if user_signed_in? %>
+
+            <%= form_with url: search_path, local: true, method: :get do |f| %>
+              <div class="search_form d-flex align-items-center">
+                <%= f.select :range, options_for_select([["ユーザー",'User'], ["投稿",'Post']]), {}, class: "search_select" %>
+                <%= f.text_field :word, placeholder: "キーワード", class: "search_word" %>
+                <%= f.select :search, options_for_select([["部分一致","partial_match"], ["完全一致","perfect_match"], ["前方一致","forward_match"],  ["後方一致","backward_match"]]), {}, class: "search_select" %>
+                <%= f.button type: "submit", class: "btn" do %>
+                  <i class="fa-solid fa-magnifying-glass fa-lg" style="color: #6699cc;"></i>
+                <% end %>
+              </div>
+            <% end %>
+
+        <% end %>
+      </div>
+    </div>
 
     <div class="main mb-auto pb-5">
       <div class="container">
