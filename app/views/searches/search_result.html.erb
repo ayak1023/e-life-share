@@ -1,24 +1,45 @@
 <div class="container">
-  <h5>検索結果</h5>
-
-  <table class="table table-hover table-inverse">
+  <h5 class="mb-4 ">検索結果</h5>
     <% if @range == "User" %>
-      <tbody>
+      <div class="d-flex flex-column">
         <% @users.each do |user| %>
-          <tr>
-            <td><%= user.name %></td>
-          </tr>
+          <div class="p-2 border-bottom border-bottom-1">
+            <%= link_to user_path(user.id) ,class: "d-flex flex-row align-items-center " do %>
+              <div>
+                <%= image_tag user.get_profile_image(150, 150) ,class: "img-fluid rounded-circle", style: "width: 40px; height: 40px; object-fit: cover;"%>
+              </div>
+              <div class="ml-4">
+                <%= user.name %>
+              </div>
+            <% end %>
+          </div>
         <% end %>
-      </tbody>
+      </div>
+
     <% elsif @range == "Post" %>
-      <tbody>
+      <div class="d-flex flex-column">
         <% @posts.each do |post| %>
-          <tr>
-            <td><%= post.title %></td>
-            <td><%= post.body %></td>
-          </tr>
+          <div class="p-2 border-bottom border-bottom-1">
+            <%= link_to post_path(post.id), class: 'text-decoration-none text-dark' do %>
+              <div class="d-flex flex-column">
+                <div class="d-flex flex-row">
+                  <div class="col-2">
+                    <%= image_tag(post.image.variant(resize_to_fill: [200, 100]).processed, class: "rounded img-fluid my-2") if post.image.attached? %>
+                  </div>
+                  <div class="col-3">
+                    <%= post.title %>
+                  </div>
+                  <div class="col">
+                    <%= post.body %>
+                  </div>
+                </div>
+                <div class="text-right">
+                  <p class="fs_08"><%= post.created_at.strftime('%Y/%m/%d') %></p>
+                </div>
+              </div>
+            <% end %>
+          </div>
         <% end %>
-      </tbody>
+      </div>
     <% end %>
-  </table>
 </div>

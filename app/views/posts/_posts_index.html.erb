@@ -1,6 +1,8 @@
 <% if posts.present? %>
   <% posts.each do |post| %>
+
     <% user = post.user %>
+
     <div class="d-flex flex-column p-2 border-bottom w-100">
       <div>
         <% if user %>
@@ -22,8 +24,9 @@
             <p class="fs_08"><%= post.created_at.strftime('%Y/%m/%d') %></p>
           </div>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
+
   <% end %>
 <% else %>
   <p class="pt-4">まだ、投稿がありません。投稿してみましょう！</p>
