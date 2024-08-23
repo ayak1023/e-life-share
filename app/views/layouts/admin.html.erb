@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin - e-Life Share</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <script src="https://kit.fontawesome.com/8cc2529ef7.js" crossorigin="anonymous"></script>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+</head>
+
+<body class="d-flex flex-column vh-100">
+  <header class="mb-3">
+   <navi class="navbar navbar-expand-lg navi_area">
+      <div class="container">
+        <span>
+          <%= link_to "e-Life Share", root_path ,class:"navbar-brand fs_2 color_green" %>
+        </span>
+        <div class="collapse navbar-collapse">
+          <% if admin_signed_in? %>
+            <ul class="navbar-nav ml-auto">
+              <li class="mr-0">
+                <%= link_to destroy_admin_session_path,class:"nav-link", method: :delete do %>
+                  <span class="mr-2">Log out</span><i class="fa-solid fa-right-from-bracket" style="color: #6c6b6b;"></i>
+                <% end %>
+              </li>
+            </ul>
+          <% end %>
+        </div>
+      </div>
+    </navi>
+  </header>
+  <div class="main mb-auto pb-5">
+    <%= yield %>
+  </div>
+  <footer class="footer_bg">
+    <div class='container'>
+    	<div class='row align-items-center'>
+      	<div class='mx-auto'>
+      	　<p class="text-white pb-4">Copyright &copy; 2024 e-Life Share.</p>
+      	</div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

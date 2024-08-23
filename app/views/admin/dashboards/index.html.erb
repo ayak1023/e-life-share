@@ -1,0 +1,28 @@
+<div class="container">
+<h1>全ユーザー一覧</h1>
+
+<div class="table-responsive">
+  <table class="table my-4">
+    <thead>
+      <tr class="bg_light_gray">
+        <th class="border-bottom">名前</th>
+        <th class="border-bottom">メールアドレス</th>
+        <th class="border-bottom text-center">退会ボタン</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.name %></td>
+          <td><%= user.email %></td>
+          <td class="text-center">
+            <%= link_to admin_user_path(user), method: :delete, data: { confirm: '本当に削除しますか？' } do %>
+              <i class="fa-solid fa-user-xmark fa-xl text-danger"></i>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+</div>

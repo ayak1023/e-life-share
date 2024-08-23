@@ -47,6 +47,10 @@ body {
   font-size: 0.8em;
 }
 
+.bg_light_gray{
+  background-color: #f7f7f7;
+}
+
 .navi_area{
   color: #2d3133;
   background-color: #f7f7f7;
