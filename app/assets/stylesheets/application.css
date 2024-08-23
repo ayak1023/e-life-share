@@ -88,7 +88,7 @@ body {
   outline: none;
 }
 
-.search_word::placeholder {
+.search_word::placeholder ,.comment_body::placeholder{
     color: #6c6b6b55;
 }
 
@@ -104,7 +104,7 @@ body {
   background-color: #f7f7f7;
 }
 
-.post_btn, .update_user_btn, .edit_btn, .btn_bg_b{
+.post_btn, .update_user_btn, .edit_btn, .btn_bg_b, .commet_btn{
   background-color: #6699CC;
   color: #fff;
   font-weight: bold;
@@ -115,13 +115,21 @@ body {
   font-weight: bold;
 }
 
-.post_btn:hover, .update_user_btn:hover, .edit_btn:hover, .btn_bg_b:hover{
+.post_btn:hover, .update_user_btn:hover, .edit_btn:hover, .btn_bg_b:hover, .commet_btn:hover{
   color: #fff;
   background-color: #6699CC88;
 }
 
 .normal_btn:hover{
   color: #2d31335A;
+}
+
+.delete_btn{
+  border-color: #6c6b6b;
+}
+
+.delete_btn:hover{
+  background-color: #6c6b6b1A;
 }
 
 .footer_bg{
