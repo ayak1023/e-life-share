@@ -1,0 +1,15 @@
+<div class="my-2">
+  <div>
+    <h3 class="my-2"><%= post.title %></h3>
+    <%= post.body %>
+    <%= image_tag(post.image.variant(resize_to_fill: [600, 300]).processed, class: "rounded img-fluid my-2") if post.image.attached? %>
+  </div>
+  <div class="d-flex flex-row align-items-center justify-content-between">
+    <div class="">
+      <i class="fa-regular fa-comment fa-xl"></i><span class="ml-1"><%= post.comments.count %></span>
+    </div>
+    <div class="text-right">
+      <p class="fs_08"><%= post.created_at.strftime('%Y/%m/%d') %></p>
+    </div>
+  </div>
+</div>

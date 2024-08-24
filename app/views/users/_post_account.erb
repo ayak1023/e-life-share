@@ -1,0 +1,8 @@
+<div>
+  <% if user %>
+    <%= link_to user_path(user.id) do %>
+      <%= image_tag user.get_profile_image(100, 100), class: "img-fluid rounded-circle", style: "width: 40px; height: 40px; object-fit: cover;" %>
+      <span class="ml-2"><b><%= user.name %></b></span>
+    <% end %>
+  <% end %>
+</div>

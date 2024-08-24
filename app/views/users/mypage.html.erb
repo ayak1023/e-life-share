@@ -4,7 +4,20 @@
     <%= render 'users/side', user: current_user %>
     <!-- ユーザーの投稿一覧 -->
     <div class="d-flex flex-column col-lg-6">
-      <%= render 'posts/posts_index', posts: @posts %>
+      <% if @posts.present? %>
+        <% @posts.each do |post| %>
+          <% user = post.user %>
+          <div class="d-flex flex-column p-2 border-bottom w-100">
+            <%= render 'post_account', user: user %>
+            <%= link_to post_path(post.id), class: 'text-decoration-none text-dark' do %>
+              <%= render 'posts/posts_content', post: post %>
+            <% end %>
+          </div>
+
+        <% end %>
+      <% else %>
+        <p class="pt-4">まだ、投稿がありません。投稿してみましょう！</p>
+      <% end %>
     </div>
   </div>
 </div>

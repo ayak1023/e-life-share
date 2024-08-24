@@ -8,23 +8,29 @@
     </ul>
   <% end %>
 
-  <h2 class="mt-4">New Post</h2>
+  <h1 class="my-4">New Post</h1>
   <div class="row m-auto">
 
     <div class="my-2">
       <%= form_with model: Post.new do |f| %>
 
-        <h5 class="mb-2">Title</h5>
-        <%= f.text_field :title ,class:"w-100 mb-2"%>
+        <div class="field my-2 w-100">
+          <%= f.label :Title ,class:"f_label_font" %><br />
+          <%= f.text_field :title ,class:"w-100"%>
+        </div>
 
-        <h5 class="mb-2">Body</h5>
-        <%= f.text_area :body ,class:"w-100 mb-2"%>
+        <div class="field my-2 w-100">
+          <%= f.label :Body ,class:"f_label_font" %><br />
+          <%= f.text_area :body ,class:"w-100"%>
+        </div>
 
-        <h5 class="mb-2">Image</h5>
-        <%= f.file_field :image, accept: "image/*" ,class:"mb-2"%>
+        <div class="field my-2 w-100">
+          <%= f.label :Image ,class:"f_label_font" %><br />
+          <%= f.file_field :image, accept: "image/*" %>
+        </div>
 
-        <div class="mt-4">
-          <%= f.submit '投稿する' ,class:"btn btn_bg_b w-100"%>
+        <div class="py-4">
+          <%= f.submit '投稿する' ,class:"btn btn_bg_b btn-block"%>
         </div>
       <% end %>
     </div>

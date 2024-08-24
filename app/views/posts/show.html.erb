@@ -15,33 +15,9 @@
         <%= link_to "編集", edit_post_path(@post.id), class: "btn edit_btn" %>
       <% end %>
     </div>
-    <div>
-      <% if @user %>
-        <%= link_to user_path(@user.id) do %>
-          <%= image_tag @user.get_profile_image(100, 100), class: "img-fluid rounded-circle", style: "width: 40px; height: 40px; object-fit: cover;" %>
-          <span class="ml-2"><b><%= @user.name %></b></span>
-        <% end %>
-      <% end %>
-    </div>
-    <%= link_to post_path(@post.id), class: 'text-decoration-none text-dark' do %>
-      <div>
-        <h3 class="my-2"><%= @post.title %></h3>
-        <p class="mb-2"><%= @post.body %></p>
-        <% if @post.image.attached? %>
-          <%= image_tag @post.image.variant(resize_to_fill: [600, 300]).processed, class: "rounded img-fluid my-2" %>
-        <% else %>
-          <p>No Image</p>
-        <% end %>
-      </div>
-      <div class="d-flex flex-row align-items-center justify-content-between py-2">
-        <div>
-          <i class="fa-regular fa-comment fa-xl"></i><span class="ml-1"><%= @post.comments.count %></span>
-        </div>
-        <div class="text-right">
-          <p class="fs_08"><%= @post.created_at.strftime('%Y/%m/%d') %></p>
-        </div>
-      </div>
-    <% end %>
+    <%= render 'users/post_account', user: @post.user %>
+    <%= render 'posts_content', post: @post %>
+
   </div>
 
   <div class="d-flex flex-column col-lg-6 m-auto">
@@ -56,8 +32,10 @@
       <div class="py-2 border-bottom">
         <div class="d-flex flex-row align-items-center justify-content-between ">
           <div>
-            <%= image_tag comment.user.get_profile_image(40,40) ,style: "width: 40px; height: 40px; object-fit: cover;"%>
-            <span class="ml-1"><%= comment.user.name %></span>
+            <%= link_to user_path(comment.user) do %>
+              <%= image_tag comment.user.get_profile_image(40,40) ,style: "width: 40px; height: 40px; object-fit: cover;"%>
+              <span class="ml-1"><%= comment.user.name %></span>
+            <% end %>
           </div>
           <div class="">
             <% if comment.user == current_user %>

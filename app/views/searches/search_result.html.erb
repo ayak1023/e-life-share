@@ -1,22 +1,22 @@
 <div class="container">
-  <h5 class="mb-4 ">検索結果</h5>
-    <% if @range == "User" %>
-      <div class="d-flex flex-column">
+  <% if @range == "User" %>
+      <h1 class="my-4 ">ユーザーの検索結果</h1>
+      <div class="d-flex flex-column col-lg-10 m-auto">
         <% @users.each do |user| %>
-          <div class="p-2 border-bottom border-bottom-1">
-            <%= link_to user_path(user.id) ,class: "d-flex flex-row align-items-center " do %>
-              <div>
+          <div class="py-2 border-bottom border-bottom-1">
+            <%= link_to user_path(user.id) ,class: "d-flex flex-row align-items-center justify-content-around" do %>
+              <div class="col-md-4">
                 <%= image_tag user.get_profile_image(150, 150) ,class: "img-fluid rounded-circle", style: "width: 40px; height: 40px; object-fit: cover;"%>
+                <span class="ml-2"><%= user.name %></span>
               </div>
-              <div class="ml-4">
-                <%= user.name %>
-              </div>
+              <div class="col-md"><%= user.introduction %></div>
             <% end %>
           </div>
         <% end %>
       </div>
 
     <% elsif @range == "Post" %>
+      <h1 class="mb-4 ">投稿の検索結果</h1>
       <div class="d-flex flex-column">
         <% @posts.each do |post| %>
           <div class="p-2 border-bottom border-bottom-1">
@@ -33,7 +33,10 @@
                     <%= post.body %>
                   </div>
                 </div>
-                <div class="text-right">
+                <div class="d-flex flex-row align-items-center justify-content-end">
+                  <div class="mr-4">
+                    <i class="fa-regular fa-comment"></i><span class="ml-1"><%= post.comments.count %></span>
+                  </div>
                   <p class="fs_08"><%= post.created_at.strftime('%Y/%m/%d') %></p>
                 </div>
               </div>

@@ -34,6 +34,13 @@
       </div>
     </navi>
   </header>
+  <div class="container">
+    <% flash.each do |message_type, message| %>
+      <div class="flash-message  <%= message_type %>">
+        <%= message %>
+      </div>
+    <% end %>
+  </div>
   <div class="main mb-auto pb-5">
     <%= yield %>
   </div>
