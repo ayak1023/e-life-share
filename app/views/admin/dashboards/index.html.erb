@@ -1,28 +1,31 @@
 <div class="container">
 <h1>全ユーザー一覧</h1>
+<p class="py-4">ユーザーの管理（削除）が可能です。</p>
 
-<div class="table-responsive">
   <table class="table my-4">
     <thead>
       <tr class="bg_light_gray">
         <th class="border-bottom">名前</th>
         <th class="border-bottom">メールアドレス</th>
-        <th class="border-bottom text-center">退会ボタン</th>
+        <th class="border-bottom text-center"></th>
       </tr>
     </thead>
     <tbody>
       <% @users.each do |user| %>
         <tr>
-          <td><%= user.name %></td>
+          <td>
+            <%= image_tag user.get_profile_image(100, 100), class: "img-fluid rounded-circle", style: "width: 40px; height: 40px; object-fit: cover;" %>
+            <span class="ml-md-2 d-block d-md-inline"><%= user.name %></span>
+          </td>
           <td><%= user.email %></td>
           <td class="text-center">
-            <%= link_to admin_user_path(user), method: :delete, data: { confirm: '本当に削除しますか？' } do %>
-              <i class="fa-solid fa-user-xmark fa-xl text-danger"></i>
+            <%= link_to admin_user_path(user), method: :delete, data: { confirm: '本当にユーザーを削除しますか？' } ,class: "user_delete" do %>
+              <i class="fa-solid fa-user-xmark fa-xl text-danger hover"></i>
             <% end %>
           </td>
         </tr>
       <% end %>
     </tbody>
   </table>
-</div>
+
 </div>

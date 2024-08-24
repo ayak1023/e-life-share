@@ -47,6 +47,10 @@ body {
   font-size: 0.8em;
 }
 
+.color_green{
+  color: #66CC99;
+}
+
 .bg_light_gray{
   background-color: #f7f7f7;
 }
@@ -100,10 +104,6 @@ body {
   border-radius: 0 .4em .4em 0;
 }
 
-.color_green{
-  color: #66CC99;
-}
-
 .user_btn:hover{
   background-color: #f7f7f7;
 }
@@ -133,7 +133,11 @@ body {
 }
 
 .delete_btn:hover{
-  background-color: #6c6b6b1A;
+  background-color: #6c6b6bE6;
+}
+
+.user_delete i:hover{
+  color: #dc35451A!important;
 }
 
 .footer_bg{
