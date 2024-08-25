@@ -86,7 +86,6 @@ body {
 
 .search_select{
   border:none;
-  border-color: #fff;
   padding: .2em;
   outline: none;
 }
@@ -99,7 +98,6 @@ body {
   outline: none;
   padding:0 .3em;
   margin:0 .2em;
-
 }
 
 .search_word:focus{
@@ -183,4 +181,23 @@ body {
 
 .list_style_error li{
   list-style-type: disc!important;
+}
+
+/*---メディアクエリ-----------------------------------------*/
+
+@media (max-width: 767.98px) {
+  .search_form{
+    padding:.1em .5em;
+    background-color: #fff;
+  }
+
+  .search_word{
+    padding:0 .1em;
+    border-left: none;
+  }
+
+  .search_area_mobile{
+    padding: 1em;
+    text-align: center;
+  }
 }
