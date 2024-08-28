@@ -9,7 +9,6 @@ Rails.application.routes.draw do
     resources :users, only: [:destroy]
   end
 
-
   devise_for :users
   root to: "homes#top"
   get 'about', to: 'homes#about', as: :about
@@ -17,13 +16,12 @@ Rails.application.routes.draw do
   get "search" => "searches#search"
 
   resources :users, only: [:show, :edit, :update, :destroy]
-  resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy]
 
   devise_scope :user do
     post "users/guest_sign_in", to: "users/sessions#guest_sign_in"
   end
 
-  resources :posts, only: [:new, :create, :index, :show, :destroy] do
+  resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
     resources :comments, only: [:create, :destroy]
     resource :favorite, only: [:create, :destroy]
   end
