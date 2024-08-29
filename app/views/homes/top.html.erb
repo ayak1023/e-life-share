@@ -9,7 +9,9 @@
             <%= link_to post_path(post.id), class: 'text-decoration-none text-dark' do %>
               <div>
                 <%= render 'posts/posts_content', post: post %>
+                <%= render 'posts/posts_content_bottom_nolink', post: post %>
               </div>
+
             <% end %>
           </div>
 

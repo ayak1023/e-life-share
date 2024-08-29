@@ -1,23 +1,11 @@
 <div class="container">
-  <% if @range == "User" %>
-    <h1 class="my-4 ">ユーザーの検索結果</h1>
-    <div class="d-flex flex-column col-lg-10 m-auto">
-      <% @users.each do |user| %>
-        <div class="py-2 border-bottom border-bottom-1">
-          <%= link_to user_path(user.id) ,class: "d-flex flex-row align-items-center justify-content-around" do %>
-            <div class="col-md-4">
-              <%= image_tag user.get_profile_image(150, 150) ,class: "img-fluid rounded-circle", style: "width: 40px; height: 40px; object-fit: cover;"%>
-              <span class="ml-2"><%= user.name %></span>
-            </div>
-            <div class="col-md"><%= user.introduction %></div>
-          <% end %>
-        </div>
-      <% end %>
-    </div>
-  <% elsif @range == "Post" %>
-    <h1 class="mb-4 ">投稿の検索結果</h1>
-    <div class="d-flex flex-column">
-      <% @posts.each do |post| %>
+  <h1>お気に入り一覧</h1>
+  <div class="my-4">
+    <% if @favorite_posts.empty? %>
+        <p>お気に入りの投稿はありません。</p>
+    <% else %>
+      <div class="d-flex flex-column">
+      <% @favorite_posts.each do |post| %>
         <div class="p-3 border-bottom border-bottom-1">
           <%= link_to post_path(post.id), class: 'text-decoration-none text-dark' do %>
             <div class="d-flex flex-column">
@@ -64,6 +52,7 @@
           </div>
         </div>
       <% end %>
-    </div>
-  <% end %>
+      </div>
+    <% end %>
+  </div>
 </div>

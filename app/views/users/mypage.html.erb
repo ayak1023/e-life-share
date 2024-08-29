@@ -12,6 +12,7 @@
             <%= link_to post_path(post.id), class: 'text-decoration-none text-dark' do %>
               <%= render 'posts/posts_content', post: post %>
             <% end %>
+            <%= render 'posts/posts_content_bottom', post: post %>
           </div>
 
         <% end %>
