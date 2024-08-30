@@ -5,13 +5,16 @@ class SearchesController < ApplicationController
     @range = params[:range]
 
     if @range == "User"
-      @users = User.looks(params[:search], params[:word])
+      @users = User.includes(:profile_image_attachment)
+                   .looks(params[:search], params[:word])
+                   .order(created_at: :desc)
       render "/searches/search_result"
     elsif @range == "Post"
-      @posts = Post.looks(params[:search], params[:word])
+      @posts = Post.includes(:user, :comments)
+                   .looks(params[:search], params[:word])
+                   .order(created_at: :desc)
       render "/searches/search_result"
     end
-
   end
 
 end

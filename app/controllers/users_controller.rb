@@ -3,12 +3,12 @@ class UsersController < ApplicationController
   before_action :ensure_guest_user, only: [:edit]
 
   def mypage
-    @posts = current_user.posts
+    @posts = current_user.posts.order(created_at: :desc)
   end
 
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts
+    @posts = @user.posts.order(created_at: :desc)
   end
 
   def edit
@@ -35,8 +35,9 @@ class UsersController < ApplicationController
 
   def favorites
     @user = User.find(params[:id])
-    favorites= Favorite.where(user_id: @user.id).pluck(:post_id)
-    @favorite_posts = Post.find(favorites)
+    favorites = Favorite.where(user_id: @user.id).order(created_at: :desc)
+    post_ids = favorites.pluck(:post_id)
+    @favorite_posts = Post.find(post_ids)
   end
 
   private

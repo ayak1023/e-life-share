@@ -14,17 +14,19 @@ Rails.application.routes.draw do
   get 'about', to: 'homes#about', as: :about
   get 'mypage', to: 'users#mypage', as: :mypage
   get "search" => "searches#search"
-  
 
   resources :users, only: [:show, :edit, :update, :destroy]do
-   member do
-     get :favorites
-   end
+    member do
+      get :favorites
+    end
+    get "followings" => "relationships#followings", as: "followings"
+  	get "followers" => "relationships#followers", as: "followers"
   end
 
   devise_scope :user do
     post "users/guest_sign_in", to: "users/sessions#guest_sign_in"
   end
+
 
   resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
     resources :comments, only: [:create, :destroy]
