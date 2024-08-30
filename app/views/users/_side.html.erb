@@ -8,7 +8,7 @@
   <% if user %>
     <div class="mt-4 text-center">
       <%= link_to user_path(user.id) do %>
-        <%= image_tag user.get_profile_image(150, 150) ,class: "img-fluid rounded-circle", style: "width: 150px; height: 150px; object-fit: cover;"%>
+        <%= image_tag user.get_profile_image(150, 150), class: "img-fluid rounded-circle", style: "width: 150px; height: 150px; object-fit: cover;" %>
       <% end %>
     </div>
     <div class="mt-4">
@@ -21,18 +21,45 @@
     </div>
   <% end %>
 
-<% if user == current_user %>
-  <% unless user.guest_user? %>
+  <div class="d-flex my-2">
+    <div class="mr-4">
+      <%= link_to user_followings_path(user) do %>
+        <span class="mr-2">フォロー</span>
+        <span><%= user.followings.count %></span>
+      <% end %>
+    </div>
     <div>
-      <%= link_to edit_user_path(user.id), class: "btn btn-outline-secondary btn-block user_btn" do %>
-        <i class="fa-solid fa-user-gear fa-sm"></i><span> プロフィールを編集</span>
+      <%= link_to user_followers_path(user) do %>
+        <span class="mr-2">フォロワー</span>
+        <span><%= user.followers.count %></span>
       <% end %>
     </div>
+  </div>
+
+  <div class="py-2">
+    <% if current_user != user %>
+      <%= render "relationships/follow_btn", user: user, options: { class: "" } %>
+    <% else %>
+      <% unless user.guest_user? %>
+        <%= link_to edit_user_path(user), class: "btn btn-outline-secondary btn-block" do %>
+          <i class="fas fa-user-cog"></i>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <% if user == current_user %>
+    <% unless user.guest_user? %>
+      <div>
+        <%= link_to edit_user_path(user), class: "btn btn-outline-secondary btn-block user_btn" do %>
+          <i class="fa-solid fa-user-gear fa-sm"></i><span> プロフィールを編集</span>
+        <% end %>
+      </div>
+      <div class="my-4">
+        <%= link_to new_post_path, class: "btn btn-block post_btn" do %>
+          <span class="post_btn_txt">ポストする</span>
+        <% end %>
+      </div>
+    <% end %>
   <% end %>
-    <div class="my-4">
-      <%= link_to new_post_path, class: "btn btn-block post_btn" do %>
-        <span class="post_btn_txt">ポストする</span>
-      <% end %>
-    </div>
-<% end %>
 </div>

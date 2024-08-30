@@ -15,12 +15,16 @@ Rails.application.routes.draw do
   get 'mypage', to: 'users#mypage', as: :mypage
   get "search" => "searches#search"
 
-  resources :users, only: [:show, :edit, :update, :destroy]do
+  resources :users, only: [:index, :show, :edit, :update, :destroy] do
+    # ユーザーのフォロワー、フォロー関係
+    resource :relationships, only: [:create, :destroy]
+    get 'followings' => 'relationships#followings', as: 'followings'
+    get 'followers' => 'relationships#followers', as: 'followers'
+
+    # お気に入り
     member do
       get :favorites
     end
-    get "followings" => "relationships#followings", as: "followings"
-  	get "followers" => "relationships#followers", as: "followers"
   end
 
   devise_scope :user do
