@@ -1,6 +1,8 @@
-<h2>Follower Users</h2>
-<% if @users.present? %>
-  <%= render partial: "users/index", locals: { users: @users } %>
-<% else %>
-  <p>ユーザーはいません</p>
-<% end %>
+<div class="container">
+  <h1 class="my-4">Follower</h1>
+  <% if @users.present? %>
+    <%= render partial: "users/index", locals: { users: @users } %>
+  <% else %>
+    <p>ユーザーはいません</p>
+  <% end %>
+</div>

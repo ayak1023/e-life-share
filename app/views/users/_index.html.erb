@@ -1,22 +1,36 @@
-<table class="table">
-  <thead>
-    <tr>
-      <th>image</th>
-      <th>name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<table class="table table-hover">
   <tbody>
     <% users.each do |user| %>
-      <tr>
-        <td><%= link_to user_path(user.id) do %>
-        <%= image_tag user.get_profile_image(150, 150), class: "img-fluid rounded-circle", style: "width: 150px; height: 150px; object-fit: cover;" %>
-      <% end %></td>
-        <td><%= user.name %></td>
-        <td>フォロー数: <%= user.followings.count %></td>
-        <td>フォロワー数: <%= user.followers.count %></td>
-        <td><%= render "relationships/follow_btn", user: user, options: { class: "follow-link" } %></td>
-        <td><%= link_to "Show", user %></td>
+      <tr class="border-bottom">
+        <td class="align-middle">
+          <%= link_to user_path(user.id), class: "" do %>
+            <div class="d-flex align-items-center">
+              <%= image_tag user.get_profile_image(150, 150), class: "img-fluid rounded-circle", style: "width: 40px; height: 40px; object-fit: cover;" %>
+              <span class="ml-2"><%= user.name %></span>
+            </div>
+          <% end %>
+        </td>
+        <td class="col-xl-6 align-middle">
+          <%= link_to user_path(user.id), class: "" do %>
+            <%= user.introduction %>
+          <% end %>
+        </td>
+        <td class="align-middle">
+          <%= link_to user_path(user.id), class: "" do %>
+            <span>フォロー</span>
+            <span class="ml-2"><%= user.followings.count %></span>
+          <% end %>
+        </td>
+        <td class="align-middle follow_td">
+          <%= link_to user_path(user.id), class: "" do %>
+            <span>フォロワー</span>
+            <span class="ml-2"><%= user.followers.count %></span>
+          <% end %>
+        </td>
+
+        <td class="align-middle">
+          <%= render "relationships/follow_btn", user: user, options: { class: "" } %>
+        </td>
       </tr>
     <% end %>
   </tbody>

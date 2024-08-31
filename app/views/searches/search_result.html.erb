@@ -1,68 +1,66 @@
 <div class="container">
   <% if @range == "User" %>
     <h1 class="my-4 ">ユーザーの検索結果</h1>
-    <div class="d-flex flex-column col-lg-10 m-auto">
-      <% @users.each do |user| %>
-        <div class="py-2 border-bottom border-bottom-1">
-          <%= link_to user_path(user.id) ,class: "d-flex flex-row align-items-center justify-content-around" do %>
-            <div class="col-md-4">
-              <%= image_tag user.get_profile_image(150, 150) ,class: "img-fluid rounded-circle", style: "width: 40px; height: 40px; object-fit: cover;"%>
-              <span class="ml-2"><%= user.name %></span>
-            </div>
-            <div class="col-md"><%= user.introduction %></div>
-          <% end %>
-        </div>
+    <div class="d-flex flex-column m-auto">
+      <% if @users.present? %>
+        <%= render "/users/index", users: @users %>
+      <% else %>
+        <p>検索結果なし</p>
       <% end %>
     </div>
   <% elsif @range == "Post" %>
     <h1 class="mb-4 ">投稿の検索結果</h1>
     <div class="d-flex flex-column">
-      <% @posts.each do |post| %>
-        <div class="p-3 border-bottom border-bottom-1">
-          <%= link_to post_path(post.id), class: 'text-decoration-none text-dark' do %>
-            <div class="d-flex flex-column">
-              <div class="d-flex flex-row">
-                <div class="col-2">
-                  <%= image_tag(post.image.variant(resize_to_fill: [200, 100]).processed, class: "rounded img-fluid") if post.image.attached? %>
-                </div>
-                <div class="col-3">
-                  <%= post.title %>
-                </div>
-                <div class="col">
-                  <%= post.body %>
+      <% if @posts.present? %>
+        <% @posts.each do |post| %>
+          <div class="p-3 border-bottom border-bottom-1">
+            <%= link_to post_path(post.id), class: 'text-decoration-none text-dark' do %>
+              <div class="d-flex flex-column">
+                <div class="d-flex flex-row">
+                  <div class="col-2">
+                    <%= image_tag(post.image.variant(resize_to_fill: [200, 100]).processed, class: "rounded img-fluid") if post.image.attached? %>
+                  </div>
+                  <div class="col-3">
+                    <%= post.title %>
+                  </div>
+                  <div class="col">
+                    <%= post.body %>
+                  </div>
                 </div>
               </div>
-            </div>
-          <% end %>
-          <div class="mt-2">
-            <div class="d-flex flex-row align-items-center justify-content-end">
-              <div class="mr-4">
-                <% if post.favorited_by?(current_user) %>
-                  <p>
-                    <%= link_to post_favorite_path(post), method: :delete do %>
-                      <i class="fa-solid fa-heart"></i>
-                      <span class="ml-1"><%= post.favorites.count %></span>
-                    <% end %>
-                  </p>
-                  <% else %>
-                  <p>
-                    <%= link_to post_favorite_path(post), method: :post do %>
-                      <i class="fa-regular fa-heart"></i>
-                      <span class="ml-1"><%= post.favorites.count %></span>
-                    <% end %>
-                  </p>
-                <% end %>
+            <% end %>
+            <div class="mt-2">
+              <div class="d-flex flex-row align-items-center justify-content-end">
+                <div class="mr-4">
+                  <% if post.favorited_by?(current_user) %>
+                    <p>
+                      <%= link_to post_favorite_path(post), method: :delete do %>
+                        <i class="fa-solid fa-heart"></i>
+                        <span class="ml-1"><%= post.favorites.count %></span>
+                      <% end %>
+                    </p>
+                    <% else %>
+                    <p>
+                      <%= link_to post_favorite_path(post), method: :post do %>
+                        <i class="fa-regular fa-heart"></i>
+                        <span class="ml-1"><%= post.favorites.count %></span>
+                      <% end %>
+                    </p>
+                  <% end %>
+                </div>
+                <div class="mr-4">
+                  <%= link_to post_path(post.id) do %>
+                    <i class="fa-regular fa-comment"></i>
+                    <span class="ml-1"><%= post.comments.count %></span>
+                  <% end %>
+                </div>
+                <p class="fs_08"><%= post.created_at.strftime('%Y/%m/%d') %></p>
               </div>
-              <div class="mr-4">
-                <%= link_to post_path(post.id) do %>
-                  <i class="fa-regular fa-comment"></i>
-                  <span class="ml-1"><%= post.comments.count %></span>
-                <% end %>
-              </div>
-              <p class="fs_08"><%= post.created_at.strftime('%Y/%m/%d') %></p>
             </div>
           </div>
-        </div>
+        <% end %>
+      <% else %>
+        <p>検索結果なし</p>
       <% end %>
     </div>
   <% end %>

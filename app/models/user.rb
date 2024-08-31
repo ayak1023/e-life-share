@@ -9,7 +9,7 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
-  # フォローしている
+
   has_many :active_relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   # フォローされている関連付け
   has_many :passive_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
@@ -60,14 +60,16 @@ class User < ApplicationRecord
   end
 
 
-  def follow(user_id)
-    relationships.create(followed_id: user_id)
+  def follow(user)
+    active_relationships.create(followed_id: user.id)
   end
 
-  def unfollow(user_id)
-    relationships.find_by(followed_id: user_id).destroy
+  # 指定したユーザーのフォローを解除する
+  def unfollow(user)
+    active_relationships.find_by(followed_id: user.id).destroy
   end
 
+  # 指定したユーザーをフォローしているかどうかを判定
   def following?(user)
     followings.include?(user)
   end

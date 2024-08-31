@@ -23,29 +23,21 @@
 
   <div class="d-flex my-2">
     <div class="mr-4">
-      <%= link_to user_followings_path(user) do %>
-        <span class="mr-2">フォロー</span>
-        <span><%= user.followings.count %></span>
+      <%= link_to user_followings_path(user) , class: "follow_list_link" do %>
+        <span>フォロー <%= user.followings.count %></span>
       <% end %>
     </div>
     <div>
-      <%= link_to user_followers_path(user) do %>
-        <span class="mr-2">フォロワー</span>
-        <span><%= user.followers.count %></span>
+      <%= link_to user_followers_path(user) , class: "follow_list_link" do %>
+        <span class="mr-2">フォロワー <%= user.followers.count %></span>
       <% end %>
     </div>
   </div>
 
   <div class="py-2">
-    <% if current_user != user %>
+
       <%= render "relationships/follow_btn", user: user, options: { class: "" } %>
-    <% else %>
-      <% unless user.guest_user? %>
-        <%= link_to edit_user_path(user), class: "btn btn-outline-secondary btn-block" do %>
-          <i class="fas fa-user-cog"></i>
-        <% end %>
-      <% end %>
-    <% end %>
+
   </div>
 
   <% if user == current_user %>
@@ -57,7 +49,7 @@
       </div>
       <div class="my-4">
         <%= link_to new_post_path, class: "btn btn-block post_btn" do %>
-          <span class="post_btn_txt">ポストする</span>
+          <i class="fa-solid fa-pen mr-2 post_btn_txt"></i><span class="post_btn_txt">ポストする</span>
         <% end %>
       </div>
     <% end %>
