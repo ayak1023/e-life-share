@@ -50,9 +50,18 @@ body {
   margin: 0;
 }
 
+.fs_1_2{
+  font-size: 1.2em;
+}
+
+.fs_1_6{
+  font-size: 1.6em;
+}
+
 .fs_2{
   font-size: 2em;
 }
+
 
 .fs_08{
   font-size: 0.8em;
@@ -122,7 +131,7 @@ body {
   background-color: #f7f7f7;
 }
 
-.post_btn, .update_user_btn, .edit_btn, .btn_bg_b, .commet_btn, .following_btn{
+.post_btn, .update_user_btn, .edit_btn, .btn_bg_b, .commet_btn, .following_btn, .cate_create_btn{
   background-color: #6699CC;
   color: #fff;
   font-weight: bold;
@@ -137,7 +146,7 @@ body {
   font-weight: bold;
 }
 
-.post_btn:hover, .update_user_btn:hover, .edit_btn:hover, .btn_bg_b:hover, .commet_btn:hover, .following_btn:hover{
+.post_btn:hover, .update_user_btn:hover, .edit_btn:hover, .btn_bg_b:hover, .commet_btn:hover, .following_btn:hover, .cate_create_btn:hover{
   color: #fff;
   background-color: #6699CC88;
 }

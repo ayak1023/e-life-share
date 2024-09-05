@@ -1,41 +1,52 @@
-<h1>Categories</h1>
-<%= form_with(model: @new_category, url: admin_categories_path, method: :post, local: true) do |form| %>
-  <% if @new_category.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@new_category.errors.count, "error") %> prohibited this category from being saved:</h2>
-      <ul>
-        <% @new_category.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+<div class="container">
+<h1 class="my-4">カテゴリー 管理</h1>
+<div class="py-4">
+  <%= form_with(model: @new_category, url: admin_categories_path, method: :post, local: true) do |form| %>
+    <% if @new_category.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@new_category.errors.count, "error") %> prohibited this category from being saved:</h2>
+        <ul>
+          <% @new_category.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="">
+      <%= form.label :name, 'カテゴリー作成', class: 'fs_1_2' %>
+    </div>
+    <div class="form-row align-items-center">
+      <div class="col-sm-6 col-md-6 col-lg-4 col-6">
+        <%= form.text_field :name, class: 'form-control' %>
+      </div>
+      <div class="col-auto">
+        <%= form.submit 'Create Category', class: 'btn cate_create_btn' %>
+      </div>
     </div>
   <% end %>
-  <div class="form-group">
-    <%= form.label :name, 'New Category Name' %>
-    <%= form.text_field :name, class: 'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= form.submit 'Create Category', class: 'btn btn-primary' %>
-  </div>
-<% end %>
-
-<h2>Existing Categories</h2>
-<table class="table">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @categories.each do |category| %>
+</div>
+<div class="my-4">
+  <table class="table mt-4">
+    <thead>
       <tr>
-        <td><%= category.name %></td>
-        <td>
-          <%= link_to 'Edit', edit_admin_category_path(category), class: 'btn btn-warning' %>
-          <%= link_to 'Destroy', admin_category_path(category), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
-        </td>
+        <th>Name</th>
+        <th>Actions</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @categories.each do |category| %>
+        <tr>
+          <td>
+            <%= link_to edit_admin_category_path(category), class: "" do %>
+              <%= category.name %>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to 'Destroy', admin_category_path(category), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+</div>
