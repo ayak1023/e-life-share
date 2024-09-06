@@ -53,6 +53,10 @@
             <h5 class="mb-2">Body</h5>
             <%= f.text_area :body ,class:"form-control" %>
           </div>
+          <div class="field">
+            <%= f.label :category_ids, 'Categories' %>
+            <%= f.collection_select :category_ids, Category.all, :id, :name, { include_blank: "選択して下さい" }, { multiple: true, class: 'form-control' } %>
+          </div>
           <div class="py-3 text-right">
             <span class="mr-3">
               <%= link_to post_path(@post.id), method: :delete, "data-confirm" => "本当に消しますか？" do %>

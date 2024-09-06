@@ -2,6 +2,7 @@
   <div>
     <h3 class=""><%= post.title %></h3>
     <div class="my-2"><%= post.body %></div>
+
     <%= image_tag(post.image.variant(resize_to_fill: [600, 300]).processed, class: "rounded img-fluid") if post.image.attached? %>
   </div>
 </div>
