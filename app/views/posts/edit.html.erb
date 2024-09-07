@@ -53,14 +53,13 @@
             <h5 class="mb-2">Body</h5>
             <%= f.text_area :body ,class:"form-control" %>
           </div>
-          <div class="field">
-            <%= f.label :category_ids, 'Categories' %>
-            <%= f.collection_select :category_ids, Category.all, :id, :name, { include_blank: "選択して下さい" }, { multiple: true, class: 'form-control' } %>
-          </div>
+
+          <%= render 'posts_category_select', f: f %>
+
           <div class="py-3 text-right">
             <span class="mr-3">
               <%= link_to post_path(@post.id), method: :delete, "data-confirm" => "本当に消しますか？" do %>
-                <i class="fa-solid fa-trash fa-xl normal_btn"></i>
+                <i class="fa-regular fa-trash-can fa-lg"></i><span class="ml-1">削除</span>
               <% end %>
             </span>
             <%= f.submit '更新する' ,class:"btn btn_bg_b" %>

@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="d-flex flex-column col-lg-6 m-auto border-bottom py-2">
+  <div class="d-flex flex-column col-lg-6 m-auto border-bottom">
     <div class="text-right">
       <div class="py-3">
         <%= link_to '/posts' ,class:"" do %>
@@ -17,7 +17,7 @@
     </div>
     <%= render 'users/post_account', user: @post.user %>
     <%= render 'posts_content', post: @post %>
-    <%= render 'posts_content_bottom', post: @post %>
+
 
   </div>
 
@@ -41,7 +41,7 @@
           <div class="">
             <% if comment.user == current_user %>
               <%= link_to post_comment_path(comment.post, comment), method: :delete do %>
-                <i class="fa-regular fa-trash-can fa-lg"></i><span class="ml-1">削除</span>
+                <i class="fa-regular fa-trash-can fa-lg"></i>
               <% end %>
             <% end %>
           </div>

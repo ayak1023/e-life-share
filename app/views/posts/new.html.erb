@@ -24,10 +24,7 @@
           <%= f.text_area :body ,class:"w-100"%>
         </div>
 
-        <div class="field">
-          <%= f.label :category_ids, 'Categories' %>
-          <%= f.collection_select :category_ids, Category.all, :id, :name, { include_blank: "選択して下さい" }, { multiple: true, class: 'form-control' } %>
-        </div>
+        <%= render 'posts_category_select', f: f %>
 
         <div class="field my-2 w-100">
           <%= f.label :Image ,class:"f_label_font" %><br />

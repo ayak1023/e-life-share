@@ -1,7 +1,13 @@
 <div class="my-2">
   <div>
     <h3 class=""><%= post.title %></h3>
-    <div class="my-2"><%= post.body %></div>
+    <div class="my-2">
+      <%= post.body %>
+    </div>
+
+    <p class="category-list my-3">
+      <%= post.categories.map { |category| "<span class='category-item'>#{category.name}</span>" }.join(' ').html_safe %>
+    </p>
 
     <%= image_tag(post.image.variant(resize_to_fill: [600, 300]).processed, class: "rounded img-fluid") if post.image.attached? %>
   </div>

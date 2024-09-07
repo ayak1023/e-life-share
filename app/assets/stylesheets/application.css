@@ -71,6 +71,10 @@ body {
   color: #66CC99;
 }
 
+.color_blue{
+  color:#6699CC;
+}
+
 .bg_light_gray{
   background-color: #f7f7f7;
 }
@@ -155,12 +159,55 @@ body {
   color: #2d31335A;
 }
 
+.category_btn {
+  background-color: #fff;
+  border: solid 1px #66CC99;
+  border-radius: .2em;
+  padding: .2em 0em;
+}
+
+.category_btn:hover,
+.category_btn:focus {
+  background-color: #66CC99;
+  color: #fff;
+  cursor: pointer;
+}
+
+.category_name {
+  color: #66CC99;
+  font-weight: 500;
+  padding: .4em 1em;
+}
+
+.category_name:hover,
+.category_name:focus {
+  color: #fff;
+}
+
+input[type="checkbox"]:checked + .category_btn {
+  background-color: #66CC99;
+  color: #fff;
+}
+
+input[type="checkbox"]:checked + .category_btn .category_name {
+  color: #fff;
+}
+
+.category-item {
+  padding: .2em .8em;
+  border-radius: .2em;
+  display: inline-block;
+  background-color: #6c6b6b1A;
+  color: #6c6b6b;
+  font-size: .8em;
+}
+
 .delete_btn{
   border-color: #6c6b6b;
 }
 
 .delete_btn:hover{
-  background-color: #6c6b6bE6;
+  background-color: #f7f7f7;
 }
 
 .user_delete i:hover{

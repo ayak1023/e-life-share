@@ -1,0 +1,3 @@
+<p class="category-list">
+  <%= post.categories.map { |category| "<span class='category-item'>#{category.name}</span>" }.join(' ').html_safe %>
+</p>
