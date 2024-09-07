@@ -9,11 +9,7 @@
           <% user = post.user %>
           <div class="d-flex flex-column p-2 border-bottom w-100">
             <%= render 'users/post_account', user: user %>
-            <%= link_to post_path(post.id), class: 'text-decoration-none text-dark' do %>
-              <div>
-                <%= render 'posts/posts_content', post: post %>
-              </div>
-            <% end %>
+            <%= render 'posts/posts_content', post: post %>
             <%= render 'posts/posts_content_bottom', post: post %>
           </div>
         <% end %>
