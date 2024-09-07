@@ -20,7 +20,7 @@
         <%= form.text_field :name, class: 'form-control' %>
       </div>
       <div class="col-auto">
-        <%= form.submit 'Create Category', class: 'btn cate_create_btn' %>
+        <%= form.submit '作成', class: 'btn cate_create_btn' %>
       </div>
     </div>
   <% end %>
@@ -28,9 +28,9 @@
 <div class="my-4">
   <table class="table mt-4">
     <thead>
-      <tr>
-        <th>Name</th>
-        <th>Actions</th>
+      <tr class="bg_light_gray">
+        <th class="border-bottom">カテゴリー名</th>
+        <th class="border-bottom"></th>
       </tr>
     </thead>
     <tbody>
@@ -42,7 +42,7 @@
             <% end %>
           </td>
           <td>
-            <%= link_to 'Destroy', admin_category_path(category), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+            <%= link_to '削除', admin_category_path(category), method: :delete, data: { confirm: '本当にカテゴリーを削除しますか?' }, class: 'btn btn-danger' %>
           </td>
         </tr>
       <% end %>

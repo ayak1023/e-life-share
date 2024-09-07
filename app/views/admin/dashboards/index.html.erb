@@ -19,8 +19,8 @@
           </td>
           <td><%= user.email %></td>
           <td class="text-center">
-            <%= link_to admin_user_path(user), method: :delete, data: { confirm: '本当にユーザーを削除しますか？' } ,class: "user_delete" do %>
-              <i class="fa-solid fa-user-xmark fa-xl text-danger hover"></i>
+            <%= link_to admin_user_path(user), method: :delete, data: { confirm: '本当にユーザーを削除しますか？' } ,class: "btn btn-danger" do %>
+              <p style="color:#fff;">退会</p>
             <% end %>
           </td>
         </tr>
