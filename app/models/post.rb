@@ -6,10 +6,20 @@ class Post < ApplicationRecord
   has_many :category_posts, dependent: :destroy
   has_many :categories, through: :category_posts
 
+
   validates :title, presence: true
   validates :body, presence: true
   #validates :name, presence: true
   validate :category_limit
+
+
+  scope :with_counts, -> {
+  select('posts.*, COUNT(DISTINCT favorites.id) AS favorite_count, COUNT(DISTINCT comments.id) AS comments_count')
+    .left_joins(:favorites)
+    .left_joins(:comments)
+    .group('posts.id')
+  }
+
 
   def self.looks(search, word)
     if search == "perfect_match"
@@ -25,9 +35,11 @@ class Post < ApplicationRecord
     end
   end
 
+
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end
+
 
   private
 

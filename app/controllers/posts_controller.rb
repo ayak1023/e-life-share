@@ -16,10 +16,15 @@ class PostsController < ApplicationController
     end
   end
 
-  #ログイン前のTopページ
-  def index
-    @posts = Post.all.order(created_at: :desc)
-  end
+def index
+  sort_option = params[:sort] || 'created_at_desc'
+  sort_order = params[:direction] || 'desc'
+
+  @sort_column, @sort_order = parse_sort_option(sort_option, sort_order)
+
+  # 複数の条件を含む場合は、カンマ区切りの文字列として指定
+  @posts = Post.with_counts.order(@sort_column)
+end
 
   def show
     @post = Post.find(params[:id])
@@ -53,9 +58,6 @@ class PostsController < ApplicationController
   end
 
   private
-  def post_params
-    params.require(:post).permit(:title, :body, :image, category_ids: [])
-  end
 
   def is_matching_login_user
     post = Post.find(params[:id])
@@ -64,4 +66,26 @@ class PostsController < ApplicationController
     end
   end
 
+  def post_params
+    params.require(:post).permit(:title, :body, :image, category_ids: [])
+  end
+
+def parse_sort_option(option, default_order)
+  case option
+  when 'created_at_desc'
+    ['created_at DESC', default_order]
+  when 'created_at_asc'
+    ['created_at ASC', default_order]
+  when 'favorite_count_desc'
+    ['favorite_count DESC', default_order]
+  when 'comments_count_desc'
+    ['comments_count DESC', default_order]
+  when 'favorite_count_desc_created_at_desc'
+    ['favorite_count DESC, created_at DESC', default_order]
+  when 'comments_count_desc_created_at_desc'
+    ['comments_count DESC, created_at DESC', default_order]
+  else
+    ['created_at DESC', default_order]
+  end
+end
 end

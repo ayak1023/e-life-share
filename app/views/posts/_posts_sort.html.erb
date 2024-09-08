@@ -1,0 +1,11 @@
+<%= form_with url: posts_path, method: :get, local: true do |form| %>
+  <%= form.label :sort, '並び替え:' %>
+  <%= form.select :sort, options_for_select([
+    ['投稿日が新しい順', 'created_at_desc'],
+    ['投稿日が古い順', 'created_at_asc'],
+    ['いいねが多い順', 'favorite_count_desc_created_at_desc'],
+    ['コメントが多い順', 'comments_count_desc_created_at_desc']
+  ], selected: params[:sort]), {}, { onchange: 'this.form.submit();' } %>
+
+  <%= form.hidden_field :direction, value: params[:direction] || 'desc' %>
+<% end %>
