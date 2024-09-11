@@ -4,7 +4,15 @@
     <div class="col-lg-6">
 
       <div class="text-right">
-        <!--並び替え検討中※特定ユーザー投稿のみで並び替える-->
+        <%= form_with url: user_path(@user), method: :get, local: true do %>
+          <label for="sort">並び替え:</label>
+          <%= select_tag :sort, options_for_select([
+              ['投稿日が新しい順', 'created_at_desc'],
+              ['投稿日が古い順', 'created_at_asc'],
+              ['いいねが多い順', 'favorite_count_desc_created_at_desc'],
+              ['コメント数が多い順', 'comments_count_desc_created_at_desc']
+            ], params[:sort]), onchange: 'this.form.submit();' %>
+        <% end %>
       </div>
       <div class="d-flex flex-column">
         <% if @posts.present? %>

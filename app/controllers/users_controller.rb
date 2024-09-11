@@ -4,11 +4,19 @@ class UsersController < ApplicationController
 
   def mypage
     @posts = current_user.posts.order(created_at: :desc)
+    
+    
   end
 
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts.order(created_at: :desc)
+
+    # フォームから送信された並び替えオプションを取得
+    sort_option = params[:sort] || 'created_at_desc'
+    @sort_column, @sort_order = parse_sort_option(sort_option)
+
+    # @user.posts.with_counts スコープを使用して並び替え
+    @posts = @user.posts.with_counts.order(@sort_column)
   end
 
   def edit
@@ -57,6 +65,21 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.guest_user?
       redirect_to user_path(current_user), alert: "ゲストユーザーはプロフィール編集画面へ遷移できません。"
+    end
+  end
+
+  def parse_sort_option(option)
+    case option
+    when 'created_at_desc'
+      ['created_at DESC']
+    when 'created_at_asc'
+      ['created_at ASC']
+    when 'favorite_count_desc_created_at_desc'
+      ['favorite_count DESC, created_at DESC']
+    when 'comments_count_desc_created_at_desc'
+      ['comments_count DESC, created_at DESC']
+    else
+      ['created_at DESC'] # デフォルトの並び順
     end
   end
 
