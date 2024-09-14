@@ -17,13 +17,11 @@ class PostsController < ApplicationController
   end
 
 def index
-  sort_option = params[:sort] || 'created_at_desc'
-  sort_order = params[:direction] || 'desc'
 
-  @sort_column, @sort_order = parse_sort_option(sort_option, sort_order)
-
-  # 複数の条件を含む場合は、カンマ区切りの文字列として指定
-  @posts = Post.with_counts.order(@sort_column)
+    sort_option = params[:sort] || 'created_at_desc'
+    @sort_column, @sort_order = parse_sort_option(sort_option)
+    # @user.posts.with_counts スコープを使用して並び替え
+    @posts = Post.with_counts.order(@sort_column)
 end
 
   def show
@@ -70,22 +68,18 @@ end
     params.require(:post).permit(:title, :body, :image, category_ids: [])
   end
 
-def parse_sort_option(option, default_order)
-  case option
-  when 'created_at_desc'
-    ['created_at DESC', default_order]
-  when 'created_at_asc'
-    ['created_at ASC', default_order]
-  when 'favorite_count_desc'
-    ['favorite_count DESC', default_order]
-  when 'comments_count_desc'
-    ['comments_count DESC', default_order]
-  when 'favorite_count_desc_created_at_desc'
-    ['favorite_count DESC, created_at DESC', default_order]
-  when 'comments_count_desc_created_at_desc'
-    ['comments_count DESC, created_at DESC', default_order]
-  else
-    ['created_at DESC', default_order]
+  def parse_sort_option(option)
+    case option
+    when 'created_at_desc'
+      ['created_at DESC']
+    when 'created_at_asc'
+      ['created_at ASC']
+    when 'favorite_count_desc_created_at_desc'
+      ['favorite_count DESC, created_at DESC']
+    when 'comments_count_desc_created_at_desc'
+      ['comments_count DESC, created_at DESC']
+    else
+      ['created_at DESC'] # デフォルトの並び順
+    end
   end
-end
 end

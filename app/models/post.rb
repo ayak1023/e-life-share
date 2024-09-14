@@ -14,9 +14,8 @@ class Post < ApplicationRecord
 
 
   scope :with_counts, -> {
-  select('posts.*, COUNT(DISTINCT favorites.id) AS favorite_count, COUNT(DISTINCT comments.id) AS comments_count')
-    .left_joins(:favorites)
-    .left_joins(:comments)
+    left_joins(:comments, :favorites)
+    .select('posts.*, COUNT(comments.id) AS comments_count, COUNT(favorites.id) AS favorite_count')
     .group('posts.id')
   }
 

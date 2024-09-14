@@ -3,9 +3,9 @@ class UsersController < ApplicationController
   before_action :ensure_guest_user, only: [:edit]
 
   def mypage
-    @posts = current_user.posts.order(created_at: :desc)
-    
-    
+    sort_option = params[:sort] || 'created_at_desc'
+    @sort_column, @sort_order = parse_sort_option(sort_option)
+    @posts = current_user.posts.with_counts.order(@sort_column)
   end
 
   def show
@@ -14,7 +14,6 @@ class UsersController < ApplicationController
     # フォームから送信された並び替えオプションを取得
     sort_option = params[:sort] || 'created_at_desc'
     @sort_column, @sort_order = parse_sort_option(sort_option)
-
     # @user.posts.with_counts スコープを使用して並び替え
     @posts = @user.posts.with_counts.order(@sort_column)
   end
