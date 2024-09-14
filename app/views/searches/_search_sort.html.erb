@@ -1,0 +1,13 @@
+<%= form_with url: url, method: :get, local: true do %>
+  <label for="sort">並び替え:</label>
+  <%= select_tag :sort, options_for_select([
+      ['投稿日が新しい順', 'created_at_desc'],
+      ['投稿日が古い順', 'created_at_asc'],
+      ['いいねが多い順', 'favorite_count_desc_created_at_desc'],
+      ['コメント数が多い順', 'comments_count_desc_created_at_desc']
+    ], params[:sort]), onchange: 'this.form.submit();' %>
+
+  <%= hidden_field_tag :range, params[:range] %>
+  <%= hidden_field_tag :word, params[:word] %>
+  <%= hidden_field_tag :search, params[:search] %>
+<% end %>

@@ -8,8 +8,12 @@
         <p>検索結果なし</p>
       <% end %>
     </div>
+    <%= paginate @users %>
   <% elsif @range == "Post" %>
     <h1 class="mb-4 ">投稿の検索結果</h1>
+    <div class="text-right">
+      <%= render 'search_sort', url: search_path(range: @range, word: params[:word], search: params[:search]) %>
+    </div>
     <div class="d-flex flex-column">
       <% if @posts.present? %>
         <% @posts.each do |post| %>
@@ -19,8 +23,12 @@
         <p>検索結果なし</p>
       <% end %>
     </div>
+    <%= paginate @posts %>
   <% elsif @range == "Category" %>
     <h1 class="mb-4">カテゴリーの検索結果</h1>
+    <div class="text-right">
+      <%= render 'search_sort', url: search_path(range: @range, word: params[:word], search: params[:search]) %>
+    </div>
     <div class="d-flex flex-column">
       <% if @posts.present? %>
         <% @posts.each do |post| %>
@@ -30,5 +38,7 @@
         <p>検索結果なし</p>
       <% end %>
     </div>
+    <%= paginate @posts %>
   <% end %>
+
 </div>

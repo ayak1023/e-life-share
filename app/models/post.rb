@@ -19,19 +19,22 @@ class Post < ApplicationRecord
     .group('posts.id')
   }
 
+  scope :with_favorite_count, -> {
+    select('posts.*, COUNT(favorites.id) AS favorite_count')
+    .left_joins(:favorites)
+    .group('posts.id')
+  }
 
-  def self.looks(search, word)
-    if search == "perfect_match"
-      @post = Post.where("title LIKE ? OR body LIKE ?", "#{word}", "#{word}")
-    elsif search == "forward_match"
-      @post = Post.where("title LIKE ? OR body LIKE ?", "#{word}%", "#{word}%")
-    elsif search == "backward_match"
-      @post = Post.where("title LIKE ? OR body LIKE ?", "%#{word}", "%#{word}")
-    elsif search == "partial_match"
-      @post = Post.where("title LIKE ? OR body LIKE ?", "%#{word}%", "%#{word}%")
-    else
-      @post = Post.all
-    end
+  scope :with_comments_count, -> {
+    select('posts.*, COUNT(comments.id) AS comments_count')
+    .left_joins(:comments)
+    .group('posts.id')
+  }
+
+
+
+   def self.looks(search, word)
+    where("posts.title LIKE ? OR posts.body LIKE ?", "%#{word}%", "%#{word}%")
   end
 
 

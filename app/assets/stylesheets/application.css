@@ -223,6 +223,37 @@ input[type="checkbox"]:checked + .category_btn .category_name {
   background-color: #66CC99;
 }
 
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+  font-size: 1.1em
+}
+
+.pagination .page ,.pagination .last ,.pagination .first{
+  margin: 0 10px;
+}
+
+.pagination .prev{
+  margin: 0 20px 0 5px;
+}
+
+.pagination .next {
+  margin: 0 5px 0 20px;
+}
+
+.pagination .current{
+  color: #6699CC!important;
+  font-weight: bold;
+}
+
+.pagination .page a{
+  text-decoration: underline!important;
+}
+
+
+
+
 /*フラッシュメッセージ--------------------------------------------*/
 .flash-message {
   border-radius: 5px;

@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   def mypage
     sort_option = params[:sort] || 'created_at_desc'
     @sort_column, @sort_order = parse_sort_option(sort_option)
-    @posts = current_user.posts.with_counts.order(@sort_column)
+    @posts = current_user.posts.with_counts.order(@sort_column).page(params[:page])
   end
 
   def show
@@ -15,7 +15,7 @@ class UsersController < ApplicationController
     sort_option = params[:sort] || 'created_at_desc'
     @sort_column, @sort_order = parse_sort_option(sort_option)
     # @user.posts.with_counts スコープを使用して並び替え
-    @posts = @user.posts.with_counts.order(@sort_column)
+    @posts = @user.posts.with_counts.order(@sort_column).page(params[:page])
   end
 
   def edit
@@ -42,9 +42,8 @@ class UsersController < ApplicationController
 
   def favorites
     @user = User.find(params[:id])
-    favorites = Favorite.where(user_id: @user.id).order(created_at: :desc)
-    post_ids = favorites.pluck(:post_id)
-    @favorite_posts = Post.find(post_ids)
+    favorite_ids = @user.favorites.pluck(:post_id)
+    @favorite_posts = Post.where(id: favorite_ids).order(created_at: :desc).page(params[:page])
   end
 
   private

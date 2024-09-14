@@ -17,11 +17,10 @@ class PostsController < ApplicationController
   end
 
 def index
-
     sort_option = params[:sort] || 'created_at_desc'
     @sort_column, @sort_order = parse_sort_option(sort_option)
     # @user.posts.with_counts スコープを使用して並び替え
-    @posts = Post.with_counts.order(@sort_column)
+    @posts = Post.with_counts.order(@sort_column).page(params[:page])
 end
 
   def show

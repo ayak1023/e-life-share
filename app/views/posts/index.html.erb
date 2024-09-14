@@ -1,7 +1,6 @@
 <div class="container py-4">
   <div class="row justify-content-around">
     <%= render 'users/side', user: current_user %>
-
     <div class="col-lg-6">
       <div class="text-right">
         <%= render 'posts/posts_sort', url: posts_path %>
@@ -20,6 +19,7 @@
           <p class="pt-4">まだ、投稿がありません。投稿してみましょう！</p>
         <% end %>
       </div>
+      <%= paginate @posts %>
     </div>
   </div>
 </div>
