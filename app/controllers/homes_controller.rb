@@ -2,7 +2,7 @@ class HomesController < ApplicationController
   def top
     sort_option = params[:sort] || 'created_at_desc'
     @sort_columns = parse_sort_option(sort_option)
-    @posts = Post.with_counts.order(@sort_columns)
+    @posts = Post.with_counts.order(@sort_columns).page(params[:page])
   end
 
   def about
