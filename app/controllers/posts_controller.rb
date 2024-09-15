@@ -16,12 +16,33 @@ class PostsController < ApplicationController
     end
   end
 
-def index
+  def index
+    @posts = Post.where(user_id: current_user.following_ids)
+
+    # ソートオプションの取得と適用
     sort_option = params[:sort] || 'created_at_desc'
     @sort_column, @sort_order = parse_sort_option(sort_option)
-    # @user.posts.with_counts スコープを使用して並び替え
-    @posts = Post.with_counts.order(@sort_column).page(params[:page])
-end
+
+    # カスタムソートが必要な場合
+    case @sort_column
+    when 'favorite_count'
+      @posts = @posts
+        .select('posts.*, COUNT(favorites.id) AS favorite_count')
+        .left_joins(:favorites)
+        .group('posts.id')
+        .order("favorite_count #{@sort_order}, created_at DESC")
+    when 'comments_count'
+      @posts = @posts
+        .select('posts.*, COUNT(comments.id) AS comments_count')
+        .left_joins(:comments)
+        .group('posts.id')
+        .order("comments_count #{@sort_order}, created_at DESC")
+    else
+      @posts = @posts.order("#{@sort_column} #{@sort_order}")
+    end
+
+    @posts = @posts.page(params[:page])
+  end
 
   def show
     @post = Post.find(params[:id])
@@ -70,15 +91,15 @@ end
   def parse_sort_option(option)
     case option
     when 'created_at_desc'
-      ['created_at DESC']
+      ['created_at', 'DESC']
     when 'created_at_asc'
-      ['created_at ASC']
+      ['created_at', 'ASC']
     when 'favorite_count_desc_created_at_desc'
-      ['favorite_count DESC, created_at DESC']
+      ['favorite_count', 'DESC']
     when 'comments_count_desc_created_at_desc'
-      ['comments_count DESC, created_at DESC']
+      ['comments_count', 'DESC']
     else
-      ['created_at DESC'] # デフォルトの並び順
+      ['created_at', 'DESC'] # デフォルトの並び順
     end
   end
 end

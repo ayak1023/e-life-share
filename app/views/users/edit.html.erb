@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="col-6">
+  <div class="col col-lg-6 col-md-10 m-md-auto m-lg-0 ">
     <% if @user.errors.any? %>
       <h5 class="text-danger"><%= @user.errors.count %>errors prohibited this obj from being saved:</h5>
         <ul class="list_style_error pl-4 mt-2">
@@ -17,7 +17,7 @@
         </div>
         <div class="field my-2 w-100">
           <%= f.label :Introduction ,class:"f_label_font" %><br />
-          <%= f.text_area :introduction, id:"user_introduction", placeholder:"自己紹介" ,class:"form-control" %>
+          <%= f.text_area :introduction, id:"user_introduction", placeholder:"自己紹介" ,class:"form-control" , rows: 5%>
         </div>
 
         <div class="field my-2 w-100">

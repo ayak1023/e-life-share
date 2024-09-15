@@ -18,7 +18,7 @@
           <div class="container">
             <% if user_signed_in? %>
               <span>
-                <%= link_to "e-Life Share", posts_path ,class:"navbar-brand fs_2 color_green" %>
+                <%= link_to "e-Life Share", root_path ,class:"navbar-brand fs_2 color_green" %>
               </span>
               <div class="collapse navbar-collapse">
                 <ul class="navbar-nav ml-4">
@@ -112,29 +112,27 @@
     </div>
     <!--モバイル表示-->
     <div class="d-block d-md-none">
-      <div class="container mb-3">
-        <div class="">
-          <% if user_signed_in? %>
-              <%= form_with url: search_path, local: true, method: :get do |f| %>
-                <div class="d-flex flex-column align-items-center bg_light_gray search_area_mobile">
-                  <div class="d-flex mb-2">
-                    <%= f.select :range, options_for_select([["ユーザー",'User'], ["投稿",'Post'], ["カテゴリー",'Category']]), {}, class: "search_select bg_light_gray mr-2" %>
-                    <span class="border-right"></span>
-                    <%= f.select :search, options_for_select([["部分一致","partial_match"], ["完全一致","perfect_match"], ["前方一致","forward_match"],  ["後方一致","backward_match"]]), {}, class: "search_select bg_light_gray ml-2" %>
-                  </div>
-                  <div class="search_form d-flex align-items-center">
-                    <%= f.text_field :word, placeholder: "キーワード", class: "search_word" %>
-                    <%= f.button type: "submit", class: "btn" do %>
-                      <i class="fa-solid fa-magnifying-glass fa-xl" style="color: #6699cc;"></i>
-                    <% end %>
-                  </div>
+      <div class="container mb-4">
+        <% if user_signed_in? %>
+            <%= form_with url: search_path, local: true, method: :get do |f| %>
+              <div class="d-flex flex-column align-items-center bg_light_gray search_area_mobile">
+                <div class="d-flex mb-2">
+                  <%= f.select :range, options_for_select([["ユーザー",'User'], ["投稿",'Post'], ["カテゴリー",'Category']]), {}, class: "search_select bg_light_gray mr-2" %>
+                  <span class="border-right"></span>
+                  <%= f.select :search, options_for_select([["部分一致","partial_match"], ["完全一致","perfect_match"], ["前方一致","forward_match"],  ["後方一致","backward_match"]]), {}, class: "search_select bg_light_gray ml-2" %>
                 </div>
-              <% end %>
-          <% end %>
-        </div>
+                <div class="search_form d-flex align-items-center">
+                  <%= f.text_field :word, placeholder: "キーワード", class: "search_word" %>
+                  <%= f.button type: "submit", class: "btn" do %>
+                    <i class="fa-solid fa-magnifying-glass fa-xl" style="color: #6699cc;"></i>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+        <% end %>
       </div>
     </div>
-    <div class="main mb-auto pb-5">
+    <div class="main mb-auto">
       <div class="container">
           <% flash.each do |message_type, message| %>
             <div class="flash-message  <%= message_type %>">
@@ -142,12 +140,11 @@
             </div>
           <% end %>
       </div>
-      <div class="pb-5">
+      <div>
         <%= yield %>
       </div>
     </div>
-
-    <footer class="footer_bg mt-auto">
+    <footer class="footer_bg mt-5">
       <div class='container'>
       	<div class='row align-items-center'>
         	<div class='mx-auto'>

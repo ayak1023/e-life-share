@@ -1,9 +1,36 @@
-<%= form_with url: url, method: :get, local: true do |form| %>
-  <%= form.label :sort, '並び替え:' %>
-  <%= form.select :sort, options_for_select([
-      ['投稿日が新しい順', 'created_at_desc'],
-      ['投稿日が古い順', 'created_at_asc'],
-      ['いいねが多い順', 'favorite_count_desc_created_at_desc'],
-      ['コメント数が多い順', 'comments_count_desc_created_at_desc']
-    ], selected: params[:sort]), {}, { onchange: 'this.form.submit();' } %>
-<% end %>
+<div class="text-right position-relative mb-2">
+  <button class="btn" id="sort-button" type="button">
+    <i class="fa-solid fa-sort mr-2"></i>
+    <span>並び替える</span>
+  </button>
+
+  <!-- 並び替えのプルダウンメニュー -->
+  <div id="sort-dropdown" class="mt-1 shadow w-auto">
+    <ul class="list-group">
+      <li class="list-group-item">
+        <a href="<%= url %>?sort=created_at_desc" class="dropdown-item">投稿日が新しい順</a>
+      </li>
+      <li class="list-group-item">
+        <a href="<%= url %>?sort=created_at_asc" class="dropdown-item">投稿日が古い順</a>
+      </li>
+      <li class="list-group-item">
+        <a href="<%= url %>?sort=favorite_count_desc_created_at_desc" class="dropdown-item">いいねが多い順</a>
+      </li>
+      <li class="list-group-item">
+        <a href="<%= url %>?sort=comments_count_desc_created_at_desc" class="dropdown-item">コメント数が多い順</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- JavaScript to toggle dropdown -->
+<script>
+  document.getElementById('sort-button').addEventListener('click', function() {
+    var dropdown = document.getElementById('sort-dropdown');
+    if (dropdown.style.display === 'none' || dropdown.style.display === '') {
+      dropdown.style.display = 'block';
+    } else {
+      dropdown.style.display = 'none';
+    }
+  });
+</script>

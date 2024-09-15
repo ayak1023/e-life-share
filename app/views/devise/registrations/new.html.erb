@@ -1,46 +1,42 @@
 <div class="container">
-  <div class="row m-auto">
-    <div class="my-2">
-      <h1 class="my-4">Sign up</h1>
-
-      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-        <%= render "devise/shared/error_messages", resource: resource %>
-        <div class="mt-4 w-100">
-          <div class="field my-2">
-            <div><%= f.label :name ,class:"f_label_font" %></div>
-            <div><%= f.text_field :name ,class:"w-100"%></div>
-          </div>
-
-          <div class="field my-2 w-100">
-            <div><%= f.label :email ,class:"f_label_font" %></div>
-            <div><%= f.email_field :email, autofocus: true, autocomplete: "email" ,class:"w-100"%></div>
-          </div>
-
-          <div class="field my-2 w-100">
-            <div>
-              <%= f.label :password ,class:"f_label_font" %>
-              <% if @minimum_password_length %>
-              <em>(<%= @minimum_password_length %> characters minimum)</em>
-              <% end %>
-            </div>
-            <div><%= f.password_field :password, autocomplete: "new-password" ,class:"w-100" %></div>
-          </div>
-
-          <div class="field my-2 w-100">
-            <div><%= f.label :password_confirmation ,class:"f_label_font" %></div>
-            <div><%= f.password_field :password_confirmation, autocomplete: "new-password",class:"w-100" %></div>
-          </div>
-
-          <div class="actions pt-4 w-100">
-            <%= f.submit "Sign up" ,class:"btn btn_bg_b w-100" %>
-          </div>
+  <div class="row-cols-lg-3 row-cols-md-2">
+    <h1>Sign up</h1>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+      <div class="mt-4 w-100">
+        <div class="field my-2">
+          <div><%= f.label :name ,class:"f_label_font" %></div>
+          <div><%= f.text_field :name ,class:"w-100"%></div>
         </div>
-      <% end %>
 
-      <div class="my-2">
-        <%= render "devise/shared/links" %>
+        <div class="field my-2 w-100">
+          <div><%= f.label :email ,class:"f_label_font" %></div>
+          <div><%= f.email_field :email, autofocus: true, autocomplete: "email" ,class:"w-100"%></div>
+        </div>
+
+        <div class="field my-2 w-100">
+          <div>
+            <%= f.label :password ,class:"f_label_font" %>
+            <% if @minimum_password_length %>
+            <em>(<%= @minimum_password_length %> characters minimum)</em>
+            <% end %>
+          </div>
+          <div><%= f.password_field :password, autocomplete: "new-password" ,class:"w-100" %></div>
+        </div>
+
+        <div class="field my-2 w-100">
+          <div><%= f.label :password_confirmation ,class:"f_label_font" %></div>
+          <div><%= f.password_field :password_confirmation, autocomplete: "new-password",class:"w-100" %></div>
+        </div>
+
+        <div class="actions pt-4 w-100">
+          <%= f.submit "Sign up" ,class:"btn btn_bg_b w-100" %>
+        </div>
       </div>
+    <% end %>
 
+    <div class="my-2">
+      <%= render "devise/shared/links" %>
     </div>
   </div>
 </div>

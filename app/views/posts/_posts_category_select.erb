@@ -1,5 +1,5 @@
 <div>
-  <p class="f_label_font my-2">Categories (最大3つ選択可能):</p>
+  <p class="f_label_font my-2">Categories (最大3つ選択可能)</p>
   <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) do |cb| %>
     <div class="form-check form-check-inline">
       <%= cb.check_box(id: "category_#{cb.value}", style: 'display: none;') %>

@@ -33,7 +33,7 @@ class Post < ApplicationRecord
 
 
 
-   def self.looks(search, word)
+  def self.looks(search, word)
     where("posts.title LIKE ? OR posts.body LIKE ?", "%#{word}%", "%#{word}%")
   end
 

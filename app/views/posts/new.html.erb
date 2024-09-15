@@ -7,30 +7,23 @@
       <% end %>
     </ul>
   <% end %>
-
   <h1 class="my-4">New Post</h1>
   <div class="row m-auto">
-
     <div class="my-2">
       <%= form_with model: Post.new do |f| %>
-
         <div class="field my-2 w-100">
           <%= f.label :Title ,class:"f_label_font" %><br />
           <%= f.text_field :title ,class:"w-100"%>
         </div>
-
         <div class="field my-2 w-100">
           <%= f.label :Body ,class:"f_label_font" %><br />
-          <%= f.text_area :body ,class:"w-100"%>
+          <%= f.text_area :body ,class:"w-100", rows: 5%>
         </div>
-
         <%= render 'posts_category_select', f: f %>
-
-        <div class="field my-2 w-100">
+        <div class="field my-2">
           <%= f.label :Image ,class:"f_label_font" %><br />
           <%= f.file_field :image, accept: "image/*" %>
         </div>
-
         <div class="py-4">
           <%= f.submit '投稿する' ,class:"btn btn_bg_b btn-block"%>
         </div>
