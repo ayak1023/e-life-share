@@ -3,7 +3,7 @@
     <div class="d-flex flex-column">
       <div class="d-flex flex-row">
         <div class="col-2">
-          <%= image_tag(post.image.variant(resize_to_fill: [200, 100]).processed, class: "rounded img-fluid") if post.image.attached? %>
+          <%= image_tag(post.get_post_image(160, 90), class: "rounded img-fluid") %>
         </div>
         <div class="col-3">
           <%= post.title %>

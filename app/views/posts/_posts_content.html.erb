@@ -14,7 +14,7 @@
     </p>
 
     <%= link_to post_path(post.id), class: 'text-decoration-none text-dark' do %>
-    <%= image_tag(post.image.variant(resize_to_fill: [600, 300]).processed, class: "rounded img-fluid") if post.image.attached? %>
+    <%= image_tag(post.image.variant(resize_to_fill: [800, 450]).processed, class: "rounded img-fluid") if post.image.attached? %>
     <% end %>
   </div>
 </div>

@@ -2,7 +2,7 @@
   <h1>My Page</h1>
   <div class="row justify-content-around">
     <%= render 'users/side', user: current_user %>
-    <div class="col-lg-6 col-md-7">
+    <div class="col col-lg-7 col-md-7">
       <div class="mt-5 border-bottom">
         <%= render 'posts/posts_sort', url: mypage_path(@user) %>
       </div>
@@ -10,11 +10,9 @@
         <% if @posts.present? %>
           <% @posts.each do |post| %>
             <% user = post.user %>
-            <div class="d-flex flex-column p-2 border-bottom w-100">
+            <div class="d-flex flex-column py-1 px-2 py-lg-3 px-lg-5 border-bottom w-100">
               <%= render 'post_account', user: user %>
-              <%= link_to post_path(post.id), class: 'text-decoration-none text-dark' do %>
-                <%= render 'posts/posts_content', post: post %>
-              <% end %>
+              <%= render 'posts/posts_content', post: post %>
               <%= render 'posts/posts_content_bottom', post: post %>
             </div>
           <% end %>

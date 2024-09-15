@@ -1,13 +1,37 @@
-<%= form_with url: url, method: :get, local: true do %>
-  <label for="sort">並び替え:</label>
-  <%= select_tag :sort, options_for_select([
-      ['投稿日が新しい順', 'created_at_desc'],
-      ['投稿日が古い順', 'created_at_asc'],
-      ['いいねが多い順', 'favorite_count_desc_created_at_desc'],
-      ['コメント数が多い順', 'comments_count_desc_created_at_desc']
-    ], params[:sort]), onchange: 'this.form.submit();' %>
+<div class="text-right position-relative">
+  <button class="btn" id="sort-button" type="button">
+    <i class="fa-solid fa-sort mr-2"></i>
+    <span>並び替える</span>
+  </button>
 
-  <%= hidden_field_tag :range, params[:range] %>
-  <%= hidden_field_tag :word, params[:word] %>
-  <%= hidden_field_tag :search, params[:search] %>
-<% end %>
+  <div id="sort-dropdown" class="mt-1 shadow w-auto">
+    <ul class="list-group">
+      <li class="list-group-item">
+        <a href="<%= url_for(sort: 'created_at_desc', range: params[:range], word: params[:word], search: params[:search]) %>" class="dropdown-item">投稿日が新しい順</a>
+      </li>
+      <li class="list-group-item">
+        <a href="<%= url_for(sort: 'created_at_asc', range: params[:range], word: params[:word], search: params[:search]) %>" class="dropdown-item">投稿日が古い順</a>
+      </li>
+      <li class="list-group-item">
+        <a href="<%= url_for(sort: 'favorite_count_desc_created_at_desc', range: params[:range], word: params[:word], search: params[:search]) %>" class="dropdown-item">いいねが多い順</a>
+      </li>
+      <li class="list-group-item">
+        <a href="<%= url_for(sort: 'comments_count_desc_created_at_desc', range: params[:range], word: params[:word], search: params[:search]) %>" class="dropdown-item">コメント数が多い順</a>
+      </li>
+    </ul>
+  </div>
+
+</div>
+
+<!-- JavaScript to toggle dropdown -->
+<script>
+  document.getElementById('sort-button').addEventListener('click', function() {
+    var dropdown = document.getElementById('sort-dropdown');
+    if (dropdown.style.display === 'none' || dropdown.style.display === '') {
+      dropdown.style.display = 'block';
+    } else {
+      dropdown.style.display = 'none';
+    }
+  });
+</script>
+

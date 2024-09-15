@@ -3,7 +3,7 @@
     <h1 class="my-4 ">ユーザーの検索結果</h1>
     <div class="d-flex flex-column m-auto">
       <% if @users.present? %>
-        <%= render "/users/index", users: @users %>
+        <%= render "search_user", users: @users %>
       <% else %>
         <p>検索結果なし</p>
       <% end %>
