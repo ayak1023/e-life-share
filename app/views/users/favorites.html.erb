@@ -6,51 +6,7 @@
     <% else %>
       <div class="d-flex flex-column">
       <% @favorite_posts.each do |post| %>
-        <div class="p-3 border-bottom border-bottom-1">
-          <%= link_to post_path(post.id), class: 'text-decoration-none text-dark' do %>
-            <div class="d-flex flex-column">
-              <div class="d-flex flex-row">
-                <div class="col-2">
-                  <%= image_tag(post.image.variant(resize_to_fill: [200, 100]).processed, class: "rounded img-fluid") if post.image.attached? %>
-                </div>
-                <div class="col-3">
-                  <%= post.title %>
-                </div>
-                <div class="col">
-                  <%= post.body %>
-                </div>
-              </div>
-            </div>
-          <% end %>
-          <div class="mt-2">
-            <div class="d-flex flex-row align-items-center justify-content-end">
-              <div class="mr-4">
-                <% if post.favorited_by?(current_user) %>
-                  <p>
-                    <%= link_to post_favorite_path(post), method: :delete do %>
-                      <i class="fa-solid fa-heart"></i>
-                      <span class="ml-1"><%= post.favorites.count %></span>
-                    <% end %>
-                  </p>
-                  <% else %>
-                  <p>
-                    <%= link_to post_favorite_path(post), method: :post do %>
-                      <i class="fa-regular fa-heart"></i>
-                      <span class="ml-1"><%= post.favorites.count %></span>
-                    <% end %>
-                  </p>
-                <% end %>
-              </div>
-              <div class="mr-4">
-                <%= link_to post_path(post.id) do %>
-                  <i class="fa-regular fa-comment"></i>
-                  <span class="ml-1"><%= post.comments.count %></span>
-                <% end %>
-              </div>
-              <p class="fs_08"><%= post.created_at.strftime('%Y/%m/%d') %></p>
-            </div>
-          </div>
-        </div>
+        <%= render 'searches/search_post', post: post %>
       <% end %>
       </div>
     <% end %>
