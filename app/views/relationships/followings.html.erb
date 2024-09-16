@@ -1,5 +1,5 @@
 <div class="container">
-  <h1 class="my-4"><%= @user.name %>　フォロー中のユーザー</h1>
+  <h1 class="my-4"><%= @user.name %> <span class="d-sm-block d-md-none"><br></span>フォロー中のユーザー</h1>
   <% if @users.exists? %>
     <%= render "/searches/search_user", users: @users %>
   <% else %>
