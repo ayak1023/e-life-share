@@ -50,6 +50,10 @@ body {
   margin: 0;
 }
 
+.fs_08{
+  font-size: 0.8em;
+}
+
 .fs_1_2{
   font-size: 1.2em;
 }
@@ -64,10 +68,6 @@ body {
 
 .fs_2{
   font-size: 2em;
-}
-
-.fs_08{
-  font-size: 0.8em;
 }
 
 .fw_500{
@@ -90,6 +90,11 @@ body {
   background-color: #f7f7f7;
 }
 
+.pointer-cursor{
+  cursor: pointer!important;
+}
+
+/*ナビ--------------------------------------------*/
 .navi_area{
   color: #2d3133;
   background-color: #f7f7f7;
@@ -101,6 +106,8 @@ body {
   margin-right: 1em;
 }
 
+
+/*検索窓--------------------------------------------*/
 .search_form{
   width: fit-content;
   border:solid 1px #2d3133;
@@ -130,63 +137,61 @@ body {
 }
 
 .search_word::placeholder ,.comment_body::placeholder{
-    color: #6c6b6b55;
+  color: #6c6b6b55;
 }
 
 .search_btn{
   border-radius: 0 .4em .4em 0;
 }
 
-  #sort-button {
-    cursor: pointer;
-  }
+/*ソート--------------------------------------------*/
 
-  #sort-button:focus{
-    box-shadow: none;
-    background-color: #f7f7f7;
-  }
-
-  #sort-dropdown {
-    position: absolute;
-    right: 0;
-    z-index: 1000;
-    background-color: white;
-    border:none;
-    border-radius: .2em;
-    display: none;
-  }
-
-  #sort-dropdown ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  #sort-dropdown li {
-    border:none;
-    padding: 0;
-  }
-
-  #sort-dropdown li:hover {
-    background-color: #f7f7f7;
-  }
-
-  #sort-dropdown a{
-    padding: .8em;
-    color: #6c6b6b;
-  }
-
-  #sort-dropdown a:hover {
-    text-decoration: none;
-    color: #000;
-    background-color: #f7f7f7;
-  }
-
-.profile_img{
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
+#sort-button {
+  cursor: pointer;
 }
+
+#sort-button:focus{
+  box-shadow: none;
+  background-color: #f7f7f7;
+}
+
+#sort-dropdown {
+  position: absolute;
+  right: 0;
+  z-index: 1000;
+  background-color: white;
+  border:none;
+  border-radius: .2em;
+  display: none;
+}
+
+#sort-dropdown ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#sort-dropdown li {
+  border:none;
+  padding: 0;
+}
+
+#sort-dropdown li:hover {
+  background-color: #f7f7f7;
+}
+
+#sort-dropdown a{
+  padding: .8em;
+  color: #6c6b6b;
+}
+
+#sort-dropdown a:hover {
+  text-decoration: none;
+  color: #000;
+  background-color: #f7f7f7;
+}
+
+/*ボタン--------------------------------------------*/
 
 .follow_list_link:hover{
   text-decoration: underline!important;
@@ -228,8 +233,7 @@ body {
   padding: .2em 0em;
 }
 
-.category_btn:hover,
-.category_btn:focus {
+.category_btn:hover,.category_btn:focus {
   background-color: #66CC99;
   color: #fff;
   cursor: pointer;
@@ -281,10 +285,27 @@ input[type="checkbox"]:checked + .category_btn .category_name {
   font-weight: 600;
 }
 
-.footer_bg{
-  background-color: #66CC99;
+.profile_img{
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
 }
 
+.img_select_btn{
+  padding: .4em;
+  border:solid 1px #6699CC;
+  border-radius: .3em;
+  color: #6699CC;
+}
+.img_select_btn:hover{
+  background-color: #f7f7f7;
+}
+
+.form-control-file,.img_select_area,#img_delete_area,#img_delete_area:hover{
+  cursor: pointer;
+}
+
+/*ページネーション--------------------------------------------*/
 .pagination {
   display: flex;
   justify-content: center;
@@ -313,8 +334,10 @@ input[type="checkbox"]:checked + .category_btn .category_name {
   text-decoration: underline!important;
 }
 
-
-
+/*footer--------------------------------------------*/
+.footer_bg{
+  background-color: #66CC99;
+}
 
 /*フラッシュメッセージ--------------------------------------------*/
 .flash-message {

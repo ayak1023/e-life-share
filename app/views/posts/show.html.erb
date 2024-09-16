@@ -2,8 +2,15 @@
   <div class="d-flex flex-column col-lg-6 m-auto border-bottom">
     <div class="text-right">
       <div class="py-3">
-        <%= link_to request.referer || '/posts', class: "" do %>
-          <i class="fa-solid fa-xmark fa-xl normal_btn"></i>
+        <% referer = request.referer %>
+        <% if referer&.include?("/edit") %>
+          <%= link_to '/posts', class: "" do %>
+            <i class="fa-solid fa-xmark fa-xl normal_btn"></i>
+          <% end %>
+        <% else %>
+          <%= link_to referer || '/posts', class: "" do %>
+            <i class="fa-solid fa-xmark fa-xl normal_btn"></i>
+          <% end %>
         <% end %>
       </div>
     </div>

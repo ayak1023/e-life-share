@@ -1,7 +1,7 @@
 <div class="container">
   <h1 class="my-4">Users</h1>
   <% if @users.exists? %>
-    <%= render "/users/index", users: @users %>
+    <%= render "/searches/search_user", users: @users %>
   <% else %>
     <p>ユーザーはいません</p>
   <% end %>

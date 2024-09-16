@@ -1,7 +1,7 @@
 <div class="container">
-  <h1 class="my-4">Follower</h1>
+  <h1 class="my-4"><%= @user.name %>　フォロワー</h1>
   <% if @users.present? %>
-    <%= render partial: "users/index", locals: { users: @users } %>
+    <%= render partial: "/searches/search_user", locals: { users: @users } %>
   <% else %>
     <p>ユーザーはいません</p>
   <% end %>

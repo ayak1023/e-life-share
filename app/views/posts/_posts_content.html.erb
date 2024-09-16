@@ -13,8 +13,10 @@
       <% end.join(' ').html_safe %>
     </p>
 
-    <%= link_to post_path(post.id), class: 'text-decoration-none text-dark' do %>
-    <%= image_tag(post.image.variant(resize_to_fill: [800, 450]).processed, class: "rounded img-fluid") if post.image.attached? %>
+    <% if post.image.attached? %>
+      <%= link_to post_path(post.id), class: 'text-decoration-none text-dark' do %>
+        <%= image_tag(post.image.variant(resize_to_fill: [800, 450]).processed, class: "rounded img-fluid") %>
+      <% end %>
     <% end %>
   </div>
 </div>

@@ -32,16 +32,22 @@
                 <div class="mb-2">
                   <%= image_tag @post.image, class: "img-fluid rounded" , style: "width: 300px; height: auto;" %>
                 </div>
-                <div class="mb-2">
-                  <%= f.check_box :remove_image %>
-                  <%= f.label :remove_image, "現在の画像を削除する" %>
+                <div class="mt-3 mb-2 img_delete_area">
+                  <%= f.label :remove_image, class: "pointer-cursor" do %>
+                    <%= f.check_box :remove_image, class: "mr-2" %>
+                    <span>現在の画像を削除する</span>
+                  <% end %>
                 </div>
               <% else %>
-                <p>No Image</p>
+                <p>画像はありません</p>
               <% end %>
             </div>
-            <p class="mb-2"><b>新しい画像を選択</b></p>
-            <%= f.file_field :image ,accept: "image/*" , class:"form-control-file" %>
+            <div class="pt-2">
+              <%= f.label :image, class: "form-label", style: "cursor: pointer;" do %>
+                <%= f.file_field :image, accept: "image/*", class: "form-control-file", style: "display: none;" %>
+                <span class="img_select_btn">新しい画像を選択</span>
+              <% end %>
+            </div>
           </div>
         </div>
         <div class="col pr-0">

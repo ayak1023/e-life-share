@@ -23,7 +23,6 @@ class PostsController < ApplicationController
     sort_option = params[:sort] || 'created_at_desc'
     @sort_column, @sort_order = parse_sort_option(sort_option)
 
-    # カスタムソートが必要な場合
     case @sort_column
     when 'favorite_count'
       @posts = @posts
