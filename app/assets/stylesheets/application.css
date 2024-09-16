@@ -43,13 +43,13 @@ h3{
   font-size: 1.8em;
 }
 
-
-/* 共通レイアウト --------------------------- */
 body {
   color: #2d3133;
   margin: 0;
+  padding-top: 5em;
 }
 
+/* 共通レイアウト --------------------------- */
 .fs_08{
   font-size: 0.8em;
 }
@@ -104,6 +104,27 @@ body {
 .navi_area ul li {
   font-size:1.1em;
   margin-right: 1em;
+}
+
+.navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1050;
+}
+
+.navbar-collapse{
+  z-index: 1050;
+}
+
+.main_content{
+  z-index: 1;
+  position: relative;
+}
+
+.nav_mr{
+  margin-right: 13em;
 }
 
 
@@ -366,8 +387,13 @@ input[type="checkbox"]:checked + .category_btn .category_name {
 
 /*---メディアクエリ-----------------------------------------*/
 
-@media (max-width: 767.98px) {
+@media (min-width: 992px) and (max-width: 1200px) {
+  .nav_mr{
+    margin-right: 2.5em;
+  }
+}
 
+@media (max-width: 767.98px) {
   h1{
   font-size: 1.8em;
   }
@@ -379,7 +405,6 @@ input[type="checkbox"]:checked + .category_btn .category_name {
   h3{
     font-size: 1.4em;
   }
-
   .search_form{
     padding:.1em .5em;
     background-color: #fff;

@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <script src="https://kit.fontawesome.com/8cc2529ef7.js" crossorigin="anonymous"></script>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -14,125 +13,100 @@
 
   <body class="d-flex flex-column vh-100">
     <header class="mb-3">
-       <navi class="navbar navbar-expand-lg navi_area">
-          <div class="container">
+      <nav class="navbar navbar-expand-lg navi_area text-right">
+        <div class="container">
+          <% if user_signed_in? %>
+            <%= link_to "e-Life Share", root_path, class: "navbar-brand fs_2 color_green" %>
+          <% else %>
+            <%= link_to "e-Life Share", root_path, class: "navbar-brand fs_2 color_green" %>
+          <% end %>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars" style="color: #6c6b6b;"></i>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav ml-4">
+              <li class="nav-item">
+                <% if user_signed_in? %>
+                  <%= link_to "Home" , posts_path, class: "nav-link" %>
+                <% else %>
+                  <%= link_to "Home" , root_path, class: "nav-link" %>
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "About", about_path, class: "nav-link nav_mr" %>
+              </li>
+              <% if user_signed_in? %>
+                <li class="nav-item">
+                  <%= link_to "My Page", mypage_path, class: "nav-link" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "Favorite" , favorites_user_path(current_user.id), class: "nav-link" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "New Post" , new_post_path, class: "nav-link" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to destroy_user_session_path, class: "nav-link", method: :delete do %>
+                    <span class="mr-2">Log out</span><i class="fa-solid fa-right-from-bracket" style="color: #6c6b6b;"></i>
+                  <% end %>
+                </li>
+              <% else %>
+                <li class="nav-item">
+                  <%= link_to "Sign up" , new_user_registration_path, class: "nav-link" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to new_user_session_path, class: "nav-link" do %>
+                    <span class="mr-2">Log in</span><i class="fa-solid fa-right-to-bracket" style="color: #6c6b6b;"></i>
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <div class="main_content mb-auto">
+      <!--PC/Tablet表示-->
+      <div class="d-none d-sm-none d-md-block">
+        <div class="container mb-3">
+          <div class="d-flex justify-content-end">
             <% if user_signed_in? %>
-              <span>
-                <%= link_to "e-Life Share", root_path ,class:"navbar-brand fs_2 color_green" %>
-              </span>
-              <div class="collapse navbar-collapse">
-                <ul class="navbar-nav ml-4">
-                  <li>
-                    <%= link_to posts_path ,class:"nav-link" do %>
-                      <span>Home</span>
+                <%= form_with url: search_path, local: true, method: :get do |f| %>
+                  <div class="search_form d-flex align-items-center">
+                    <%= f.select :range, options_for_select([["ユーザー",'User'], ["投稿",'Post'], ["カテゴリー",'Category']]), {}, class: "search_select" %>
+                    <%= f.text_field :word, placeholder: "キーワード", class: "search_word" %>
+                    <%= f.select :search, options_for_select([["部分一致","partial_match"], ["完全一致","perfect_match"], ["前方一致","forward_match"],  ["後方一致","backward_match"]]), {}, class: "search_select" %>
+                    <%= f.button type: "submit", class: "btn" do %>
+                      <i class="fa-solid fa-magnifying-glass fa-xl" style="color: #6699cc;"></i>
                     <% end %>
-                  </li>
-                  <li>
-                    <%= link_to about_path ,class:"nav-link text-light" do %>
-                      <span>About</span>
-                    <% end %>
-                  </li>
-                </ul>
-                <ul class="navbar-nav ml-auto">
-                  <li>
-                    <%= link_to mypage_path ,class:"nav-link" do %>
-                      <span>My Page</span>
-                    <% end %>
-                  </li>
-                  <li>
-                    <%= link_to favorites_user_path(current_user.id), class: "nav-link" do %>
-                      <span>Favorite</span>
-                    <% end %>
-                  </li>
-                  <li>
-                    <%= link_to new_post_path ,class:"nav-link" do%>
-                      <span>New Post</span>
-                    <% end %>
-                  </li>
-                  <li class="mr-0">
-                    <%= link_to destroy_user_session_path,class:"nav-link", method: :delete do %>
-                      <span class="mr-2">Log out</span><i class="fa-solid fa-right-from-bracket" style="color: #6c6b6b;"></i>
-                    <% end %>
-                  </li>
-                </ul>
-              </div>
-            <% else %>
-              <span>
-                <%= link_to "e-Life Share", root_path ,class:"navbar-brand fs_2 color_green" %>
-              </span>
-              <div class="collapse navbar-collapse">
-                <ul class="navbar-nav ml-4">
-                  <li>
-                    <%= link_to root_path ,class:"nav-link text-light" do %>
-                      <span>Home</span>
-                    <% end %>
-                  </li>
-                  <li>
-                    <%= link_to about_path ,class:"nav-link text-light" do %>
-                      <span>About</span>
-                    <% end %>
-                  </li>
-                </ul>
-                <ul class="navbar-nav ml-auto">
-                  <li>
-                    <%= link_to new_user_registration_path ,class:"nav-link text-light" do %>
-                      <span>Sign up</span>
-                    <% end %>
-                  </li>
-                  <li class="mr-0">
-                    <%= link_to new_user_session_path ,class:"nav-link text-light" do %>
-                      <span class="mr-2">Log in</span><i class="fa-solid fa-right-to-bracket" style="color: #6c6b6b;"></i>
-                    <% end %>
-                  </li>
-                </ul>
-              </div>
+                  </div>
+                <% end %>
             <% end %>
           </div>
         </div>
-      </navi>
-    </header>
-    <!--PC/Tablet表示-->
-    <div class="d-none d-sm-none d-md-block">
-      <div class="container mb-3">
-        <div class="d-flex justify-content-end">
+      </div>
+      <!--モバイル表示-->
+      <div class="d-block d-md-none">
+        <div class="container mb-4">
           <% if user_signed_in? %>
               <%= form_with url: search_path, local: true, method: :get do |f| %>
-                <div class="search_form d-flex align-items-center">
-                  <%= f.select :range, options_for_select([["ユーザー",'User'], ["投稿",'Post'], ["カテゴリー",'Category']]), {}, class: "search_select" %>
-                  <%= f.text_field :word, placeholder: "キーワード", class: "search_word" %>
-                  <%= f.select :search, options_for_select([["部分一致","partial_match"], ["完全一致","perfect_match"], ["前方一致","forward_match"],  ["後方一致","backward_match"]]), {}, class: "search_select" %>
-                  <%= f.button type: "submit", class: "btn" do %>
-                    <i class="fa-solid fa-magnifying-glass fa-xl" style="color: #6699cc;"></i>
-                  <% end %>
+                <div class="d-flex flex-column align-items-center bg_light_gray search_area_mobile">
+                  <div class="d-flex mb-2">
+                    <%= f.select :range, options_for_select([["ユーザー",'User'], ["投稿",'Post'], ["カテゴリー",'Category']]), {}, class: "search_select bg_light_gray mr-2" %>
+                    <span class="border-right"></span>
+                    <%= f.select :search, options_for_select([["部分一致","partial_match"], ["完全一致","perfect_match"], ["前方一致","forward_match"],  ["後方一致","backward_match"]]), {}, class: "search_select bg_light_gray ml-2" %>
+                  </div>
+                  <div class="search_form d-flex align-items-center">
+                    <%= f.text_field :word, placeholder: "キーワード", class: "search_word" %>
+                    <%= f.button type: "submit", class: "btn" do %>
+                      <i class="fa-solid fa-magnifying-glass fa-xl" style="color: #6699cc;"></i>
+                    <% end %>
+                  </div>
                 </div>
               <% end %>
           <% end %>
         </div>
       </div>
-    </div>
-    <!--モバイル表示-->
-    <div class="d-block d-md-none">
-      <div class="container mb-4">
-        <% if user_signed_in? %>
-            <%= form_with url: search_path, local: true, method: :get do |f| %>
-              <div class="d-flex flex-column align-items-center bg_light_gray search_area_mobile">
-                <div class="d-flex mb-2">
-                  <%= f.select :range, options_for_select([["ユーザー",'User'], ["投稿",'Post'], ["カテゴリー",'Category']]), {}, class: "search_select bg_light_gray mr-2" %>
-                  <span class="border-right"></span>
-                  <%= f.select :search, options_for_select([["部分一致","partial_match"], ["完全一致","perfect_match"], ["前方一致","forward_match"],  ["後方一致","backward_match"]]), {}, class: "search_select bg_light_gray ml-2" %>
-                </div>
-                <div class="search_form d-flex align-items-center">
-                  <%= f.text_field :word, placeholder: "キーワード", class: "search_word" %>
-                  <%= f.button type: "submit", class: "btn" do %>
-                    <i class="fa-solid fa-magnifying-glass fa-xl" style="color: #6699cc;"></i>
-                  <% end %>
-                </div>
-              </div>
-            <% end %>
-        <% end %>
-      </div>
-    </div>
-    <div class="main mb-auto">
       <div class="container">
           <% flash.each do |message_type, message| %>
             <div class="flash-message  <%= message_type %>">
@@ -140,7 +114,7 @@
             </div>
           <% end %>
       </div>
-      <div>
+      <div class="mt-3 mt-lg-4">
         <%= yield %>
       </div>
     </div>
