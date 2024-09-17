@@ -44,6 +44,45 @@
       </div>
     </navi>
   </header>
+
+  <% if admin_signed_in? %>
+    <div class="d-none d-sm-none d-md-block">
+      <div class="container mb-3">
+        <div class="d-flex justify-content-end">
+          <%= form_with url: admin_dashboard_search_result_path, local: true, method: :get do |f| %>
+            <div class="search_form d-flex align-items-center">
+              <%= f.select :range, options_for_select([["ユーザー",'User'], ["カテゴリー",'Category']]), {}, class: "search_select" %>
+              <%= f.text_field :word, placeholder: "キーワード", class: "search_word" %>
+              <%= f.select :search, options_for_select([["部分一致","partial_match"], ["完全一致","perfect_match"], ["前方一致","forward_match"], ["後方一致","backward_match"]]), {}, class: "search_select" %>
+              <%= f.button type: "submit", class: "btn" do %>
+                <i class="fa-solid fa-magnifying-glass fa-xl" style="color: #6699cc;"></i>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="d-block d-md-none">
+      <div class="container mb-4">
+        <%= form_with url: admin_dashboard_search_result_path, local: true, method: :get do |f| %>
+          <div class="d-flex flex-column align-items-center bg_light_gray search_area_mobile">
+            <div class="d-flex mb-2">
+              <%= f.select :range, options_for_select([["ユーザー",'User'], ["カテゴリー",'Category']]), {}, class: "search_select bg_light_gray mr-2" %>
+              <span class="border-right"></span>
+              <%= f.select :search, options_for_select([["部分一致","partial_match"], ["完全一致","perfect_match"], ["前方一致","forward_match"], ["後方一致","backward_match"]]), {}, class: "search_select bg_light_gray ml-2" %>
+            </div>
+            <div class="search_form d-flex align-items-center">
+              <%= f.text_field :word, placeholder: "キーワード", class: "search_word" %>
+              <%= f.button type: "submit", class: "btn" do %>
+                <i class="fa-solid fa-magnifying-glass fa-xl" style="color: #6699cc;"></i>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
   <div class="container">
     <% flash.each do |message_type, message| %>
       <div class="flash-message  <%= message_type %>">

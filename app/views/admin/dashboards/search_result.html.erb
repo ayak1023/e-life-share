@@ -1,0 +1,51 @@
+<div class="container">
+  <% if @range == "User" %>
+    <table class="table my-4">
+      <thead>
+        <tr class="bg_light_gray">
+          <th class="border-bottom">名前</th>
+          <th class="border-bottom">メールアドレス</th>
+          <th class="border-bottom text-center"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @results.each do |user| %>
+          <tr>
+            <td>
+              <%= image_tag user.get_profile_image(100, 100), class: "img-fluid rounded-circle", style: "width: 40px; height: 40px; object-fit: cover;" %>
+              <span class="ml-md-2 d-block d-md-inline"><%= user.name %></span>
+            </td>
+            <td><%= user.email %></td>
+            <td class="text-center">
+              <%= link_to admin_user_path(user), method: :delete, data: { confirm: '本当にユーザーを削除しますか？' }, class: "btn btn-danger" do %>
+                <p class="mb-0" style="color:#fff;">退会</p>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+  <% elsif @range == "Category" %>
+    <table class="table my-4">
+      <thead>
+        <tr class="bg_light_gray">
+          <th class="border-bottom">カテゴリ名</th>
+          <th class="border-bottom text-center"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @results.each do |category| %>
+          <tr>
+            <td><%= category.name %></td>
+            <td class="text-center">
+              <%= link_to admin_category_path(category), method: :delete, data: { confirm: '本当にカテゴリを削除しますか？' }, class: "btn btn-danger" do %>
+                <p class="mb-0" style="color:#fff;">削除</p>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+   <% end %>
+</div>
