@@ -15,27 +15,19 @@
     <header class="mb-3">
       <nav class="navbar navbar-expand-lg navi_area text-right">
         <div class="container">
-          <% if user_signed_in? %>
-            <%= link_to "e-Life Share", root_path, class: "navbar-brand fs_2 color_green" %>
-          <% else %>
-            <%= link_to "e-Life Share", root_path, class: "navbar-brand fs_2 color_green" %>
-          <% end %>
+          <%= link_to "e-Life Share", root_path, class: "navbar-brand fs_2 color_green" %>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <i class="fas fa-bars" style="color: #6c6b6b;"></i>
           </button>
           <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
             <ul class="navbar-nav ml-4">
-              <li class="nav-item">
-                <% if user_signed_in? %>
-                  <%= link_to "Home" , posts_path, class: "nav-link" %>
-                <% else %>
-                  <%= link_to "Home" , root_path, class: "nav-link" %>
-                <% end %>
-              </li>
-              <li class="nav-item">
-                <%= link_to "About", about_path, class: "nav-link nav_mr" %>
-              </li>
               <% if user_signed_in? %>
+                <li class="nav-item">
+                  <%= link_to "Home" , posts_path, class: "nav-link" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "About", about_path, class: "nav-link nav_mr" %>
+                </li>
                 <li class="nav-item">
                   <%= link_to "My Page", mypage_path, class: "nav-link" %>
                 </li>
@@ -51,6 +43,12 @@
                   <% end %>
                 </li>
               <% else %>
+                <li class="nav-item">
+                  <%= link_to "Home" , root_path, class: "nav-link" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "About", about_path, class: "nav-link" %>
+                </li>
                 <li class="nav-item">
                   <%= link_to "Sign up" , new_user_registration_path, class: "nav-link" %>
                 </li>

@@ -393,6 +393,13 @@ input[type="checkbox"]:checked + .category_btn .category_name {
   }
 }
 
+@media (min-width: 767.99px) and (max-width: 991px) {
+  .nav_mr{
+    margin-right: 0em;
+  }
+}
+
+
 @media (max-width: 767.98px) {
   h1{
   font-size: 1.8em;
@@ -405,6 +412,11 @@ input[type="checkbox"]:checked + .category_btn .category_name {
   h3{
     font-size: 1.4em;
   }
+
+  .nav_mr{
+    margin-right: 0;
+  }
+
   .search_form{
     padding:.1em .5em;
     background-color: #fff;
