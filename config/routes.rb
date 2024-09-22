@@ -23,12 +23,10 @@ Rails.application.routes.draw do
     get 'categories/:id/posts', to: 'categories#posts', as: 'category_posts'
 
     resources :users, only: [:index, :show, :edit, :update, :destroy] do
-      # ユーザーのフォロワー、フォロー関係
       resource :relationships, only: [:create, :destroy]
       get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers' => 'relationships#followers', as: 'followers'
 
-      # お気に入り
       member do
         get :favorites
       end

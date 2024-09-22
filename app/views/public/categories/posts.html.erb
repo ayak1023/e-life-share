@@ -1,5 +1,8 @@
 <div class="container">
   <h1 class="mb-4"><%= @category.name %> カテゴリーの投稿一覧</h1>
+  <div class="text-right">
+    <%= render 'public/searches/search_sort', url: search_path(range: @range, word: params[:word], search: params[:search]) %>
+  </div>
   <div class="d-flex flex-column">
     <% if @posts.present? %>
       <% @posts.each do |post| %>

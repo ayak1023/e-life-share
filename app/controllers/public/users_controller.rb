@@ -10,11 +10,8 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-
-    # フォームから送信された並び替えオプションを取得
     sort_option = params[:sort] || 'created_at_desc'
     @sort_column, @sort_order = parse_sort_option(sort_option)
-    # @user.posts.with_counts スコープを使用して並び替え
     @posts = @user.posts.with_counts.order(@sort_column).page(params[:page])
   end
 
