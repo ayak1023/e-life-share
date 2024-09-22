@@ -3,7 +3,7 @@
     <h1 class="my-4 ">ユーザーの検索結果</h1>
     <div class="d-flex flex-column m-auto px-lg-4">
       <% if @users.present? %>
-        <%= render "public/search_user", users: @users %>
+        <%= render "search_user", users: @users %>
       <% else %>
         <p>検索結果なし</p>
       <% end %>
@@ -12,12 +12,12 @@
   <% elsif @range == "Post" %>
     <h1 class="mb-4 ">投稿の検索結果</h1>
     <div class="text-right">
-      <%= render 'public/search_sort', url: search_path(range: @range, word: params[:word], search: params[:search]) %>
+      <%= render 'search_sort', url: search_path(range: @range, word: params[:word], search: params[:search]) %>
     </div>
     <div class="d-flex flex-column">
       <% if @posts.present? %>
         <% @posts.each do |post| %>
-          <%= render 'public/search_post', post: post %>
+          <%= render 'search_post', post: post %>
         <% end %>
       <% else %>
         <p>検索結果なし</p>
@@ -27,12 +27,12 @@
   <% elsif @range == "Category" %>
     <h1 class="mb-4">カテゴリーの検索結果</h1>
     <div class="text-right">
-      <%= render 'public/search_sort', url: search_path(range: @range, word: params[:word], search: params[:search]) %>
+      <%= render 'search_sort', url: search_path(range: @range, word: params[:word], search: params[:search]) %>
     </div>
     <div class="d-flex flex-column px-lg-2">
       <% if @posts.present? %>
         <% @posts.each do |post| %>
-          <%= render 'public/search_post', post: post %>
+          <%= render 'search_post', post: post %>
         <% end %>
       <% else %>
         <p>検索結果なし</p>

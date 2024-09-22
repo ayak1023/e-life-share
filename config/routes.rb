@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   scope module: :public do
 
-  devise_for :users
+  devise_for :users, controllers: { sessions: 'public/sessions' }
 
     root to: "homes#top"
     get 'about', to: 'homes#about', as: :about
@@ -35,7 +35,7 @@ Rails.application.routes.draw do
     end
 
     devise_scope :user do
-      post "users/guest_sign_in", to: "users/sessions#guest_sign_in"
+      post "users/guest_sign_in", to: "sessions#guest_sign_in"
     end
 
     resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy] do

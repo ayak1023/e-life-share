@@ -10,7 +10,7 @@ class Public::SearchesController < ApplicationController
       flash.now[:alert] = "検索キーワードを入力してください。"
       @users = [] if @range == "User"
       @posts = [] if @range == "Post" || @range == "Category"
-      render "/searches/search_result" and return
+      render "public/search_result" and return
     end
 
     if @range == "User"
@@ -18,7 +18,7 @@ class Public::SearchesController < ApplicationController
                    .looks(params[:search], keyword)
                    .order(created_at: :desc)
                    .page(params[:page])
-      render "/searches/search_result"
+      render "public/searches/search_result"
     elsif @range == "Post"
       @posts = Post.includes(:user, :comments)
                    .looks(params[:search], keyword)
@@ -26,7 +26,7 @@ class Public::SearchesController < ApplicationController
                    .with_comments_count
                    .order(parse_sort_option(sort_option))
                    .page(params[:page])
-      render "/searches/search_result"
+      render "public/searches/search_result"
     elsif @range == "Category"
       category = Category.find_by('LOWER(name) = ?', keyword.downcase)
       if category
@@ -38,7 +38,7 @@ class Public::SearchesController < ApplicationController
       else
         @posts = []
       end
-      render "/searches/search_result"
+      render "public/searches/search_result"
     end
   end
 
