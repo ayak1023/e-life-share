@@ -1,0 +1,49 @@
+<div class="col-10 col-lg-3 col-md-5">
+  <% if user %>
+    <%= link_to user_path(user.id) do %>
+    <div class="mb-3">
+      <div class="text-center">
+        <%= image_tag user.get_profile_image(150, 150), class: "img-fluid rounded-circle profile_img" %>
+      </div>
+      <div class="my-2">
+        <p class="fs_1_2 fw_500"><%= user.name %></p>
+      </div>
+      <div>
+        <p><%= user.introduction %></p>
+      </div>
+    </div>
+    <% end %>
+  <% end %>
+
+  <div class="d-flex my-3">
+    <div class="mr-4">
+      <%= link_to user_followings_path(user) , class: "follow_list_link" do %>
+        <span>フォロー <%= user.followings.count %></span>
+      <% end %>
+    </div>
+    <div>
+      <%= link_to user_followers_path(user) , class: "follow_list_link" do %>
+        <span class="mr-2">フォロワー <%= user.followers.count %></span>
+      <% end %>
+    </div>
+  </div>
+
+  <div>
+    <%= render "public/relationships/follow_btn", user: user, options: { class: "" } %>
+  </div>
+
+  <% if user == current_user %>
+    <% unless user.guest_user? %>
+      <div>
+        <%= link_to edit_user_path(user), class: "btn btn-outline-secondary btn-block user_btn" do %>
+          <i class="fa-solid fa-user-gear fa-sm"></i><span> プロフィールを編集</span>
+        <% end %>
+      </div>
+    <% end %>
+    <div class="my-4">
+      <%= link_to new_post_path, class: "btn btn-block post_btn" do %>
+        <i class="fa-solid fa-pen mr-2 post_btn_txt"></i><span class="post_btn_txt">ポストする</span>
+      <% end %>
+    </div>
+  <% end %>
+</div>

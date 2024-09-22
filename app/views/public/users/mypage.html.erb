@@ -1,0 +1,26 @@
+<div class="container">
+  <h1 class="mb-2">My Page</h1>
+  <div class="row justify-content-around">
+    <%= render 'public/users/side', user: current_user %>
+    <div class="col col-lg-7 col-md-7">
+      <div class="border-bottom">
+        <%= render 'public/posts/posts_sort', url: mypage_path(@user) %>
+      </div>
+      <div class="d-flex flex-column">
+        <% if @posts.present? %>
+          <% @posts.each do |post| %>
+            <% user = post.user %>
+            <div class="d-flex flex-column py-1 px-2 py-lg-3 px-lg-5 border-bottom w-100">
+              <%= render 'post_account', user: user %>
+              <%= render 'public/posts/posts_content', post: post %>
+              <%= render 'public/posts/posts_content_bottom', post: post %>
+            </div>
+          <% end %>
+        <% else %>
+          <p class="pt-4">まだ、投稿がありません。投稿してみましょう！</p>
+        <% end %>
+      </div>
+      <%= paginate @posts %>
+    </div>
+  </div>
+</div>

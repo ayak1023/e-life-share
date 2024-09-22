@@ -1,0 +1,69 @@
+<div class="container">
+  <div class="d-flex flex-column col-lg-6 m-auto border-bottom">
+    <div class="text-right">
+      <div class="py-3">
+        <% referer = request.referer %>
+        <% if referer&.include?("/edit") %>
+          <%= link_to '/posts', class: "" do %>
+            <i class="fa-solid fa-xmark fa-xl normal_btn"></i>
+          <% end %>
+        <% else %>
+          <%= link_to referer || '/posts', class: "" do %>
+            <i class="fa-solid fa-xmark fa-xl normal_btn"></i>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <div class="d-flex justify-content-end align-items-center">
+      <% if @post.user_id == current_user.id %>
+        <%= link_to post_path(@post.id), method: :delete, "data-confirm" => "本当に消しますか？", class: "mr-4 btn delete_btn" do %>
+          <i class="fa-regular fa-trash-can fa-xl"></i><span class="ml-2">削除</span>
+        <% end %>
+        <%= link_to "編集", edit_post_path(@post.id), class: "btn edit_btn" %>
+      <% end %>
+    </div>
+    <%= render 'public/users/post_account', user: @post.user %>
+    <%= render 'posts_content', post: @post %>
+    <%= render 'public/posts/posts_content_bottom', post: @post %>
+
+  </div>
+
+  <div class="d-flex flex-column col-lg-6 m-auto">
+    <div class="py-4 border-bottom">
+      <%= form_with model: [@post, @comment] do |f| %>
+        <%= f.text_area :body, rows: '3', placeholder: "コメントする" ,class: "comment_body w-100" %>
+        <div><%= f.submit "送信" ,class: "btn commet_btn" %></div>
+      <% end %>
+    </div>
+
+    <% @post.comments.each do |comment| %>
+      <div class="py-2 border-bottom">
+        <div class="d-flex flex-row align-items-center justify-content-between ">
+          <div>
+            <%= link_to user_path(comment.user) do %>
+              <%= image_tag comment.user.get_profile_image(40,40) ,style: "width: 40px; height: 40px; object-fit: cover;"%>
+              <span class="ml-1"><%= comment.user.name %></span>
+            <% end %>
+          </div>
+          <div class="">
+            <% if comment.user == current_user %>
+              <%= link_to post_comment_path(comment.post, comment), method: :delete do %>
+                <i class="fa-regular fa-trash-can fa-lg"></i>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+        <div class="p-2"><%= comment.body %></div>
+        <div class="text-right">
+          <p class="fs_08"><%= comment.created_at.strftime('%Y/%m/%d') %></p>
+        </div>
+
+      </div>
+    <% end %>
+  </div>
+
+
+
+</div>
+
+

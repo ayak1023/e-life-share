@@ -1,0 +1,8 @@
+<div class="container">
+  <h1 class="my-4"><%= @user.name %> <span class="d-sm-block d-md-none"><br></span>フォロワー</h1>
+  <% if @users.present? %>
+    <%= render partial: "public/searches/search_user", locals: { users: @users } %>
+  <% else %>
+    <p>ユーザーはいません</p>
+  <% end %>
+</div>

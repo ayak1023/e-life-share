@@ -1,109 +1,107 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Admin - e-Life Share</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <%= csrf_meta_tags %>
-  <%= csp_meta_tag %>
+  <head>
+    <title>Admin - e-Life Share</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <script src="https://kit.fontawesome.com/8cc2529ef7.js" crossorigin="anonymous"></script>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  </head>
 
-  <script src="https://kit.fontawesome.com/8cc2529ef7.js" crossorigin="anonymous"></script>
-  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-
-</head>
-
-<body class="d-flex flex-column vh-100">
-  <header class="mb-3">
-   <navi class="navbar navbar-expand-md navi_area text-right">
-      <div class="container">
-        <span>
-          <%= link_to "e-Life Share", root_path ,class:"navbar-brand fs_2 color_green" %>
-        </span>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <i class="fas fa-bars" style="color: #6c6b6b;"></i>
-        </button>
-        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-          <% if admin_signed_in? %>
-            <ul class="navbar-nav ml-4">
-              <li class="nav-item">
-                <%= link_to admin_dashboards_path, class:"nav-link" do %>
-                  <span>Users</span>
-                <% end %>
-              </li>
-              <li class="nav-item">
-                <%= link_to admin_categories_path, class:"nav-link" do %>
-                  <span>Category</span>
-                <% end %>
-              </li>
-              <li class="nav-item">
-                <%= link_to destroy_admin_session_path,class:"nav-link", method: :delete do %>
-                  <span class="mr-2">Log out</span><i class="fa-solid fa-right-from-bracket" style="color: #6c6b6b;"></i>
-                <% end %>
-              </li>
-            </ul>
-          <% end %>
-        </div>
-      </div>
-    </navi>
-  </header>
-
-  <% if admin_signed_in? %>
-    <div class="d-none d-sm-none d-md-block">
-      <div class="container mb-3">
-        <div class="d-flex justify-content-end">
-          <%= form_with url: admin_dashboard_search_result_path, local: true, method: :get do |f| %>
-            <div class="search_form d-flex align-items-center">
-              <%= f.select :range, options_for_select([["ユーザー",'User'], ["カテゴリー",'Category']]), {}, class: "search_select" %>
-              <%= f.text_field :word, placeholder: "キーワード", class: "search_word" %>
-              <%= f.select :search, options_for_select([["部分一致","partial_match"], ["完全一致","perfect_match"], ["前方一致","forward_match"], ["後方一致","backward_match"]]), {}, class: "search_select" %>
-              <%= f.button type: "submit", class: "btn" do %>
-                <i class="fa-solid fa-magnifying-glass fa-xl" style="color: #6699cc;"></i>
-              <% end %>
-            </div>
-          <% end %>
-        </div>
-      </div>
-    </div>
-    <div class="d-block d-md-none">
-      <div class="container mb-4">
-        <%= form_with url: admin_dashboard_search_result_path, local: true, method: :get do |f| %>
-          <div class="d-flex flex-column align-items-center bg_light_gray search_area_mobile">
-            <div class="d-flex mb-2">
-              <%= f.select :range, options_for_select([["ユーザー",'User'], ["カテゴリー",'Category']]), {}, class: "search_select bg_light_gray mr-2" %>
-              <span class="border-right"></span>
-              <%= f.select :search, options_for_select([["部分一致","partial_match"], ["完全一致","perfect_match"], ["前方一致","forward_match"], ["後方一致","backward_match"]]), {}, class: "search_select bg_light_gray ml-2" %>
-            </div>
-            <div class="search_form d-flex align-items-center">
-              <%= f.text_field :word, placeholder: "キーワード", class: "search_word" %>
-              <%= f.button type: "submit", class: "btn" do %>
-                <i class="fa-solid fa-magnifying-glass fa-xl" style="color: #6699cc;"></i>
-              <% end %>
-            </div>
+  <body class="d-flex flex-column vh-100">
+    <header class="mb-3">
+     <navi class="navbar navbar-expand-md navi_area text-right">
+        <div class="container">
+          <span>
+            <%= link_to "e-Life Share", root_path ,class:"navbar-brand fs_2 color_green" %>
+          </span>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars" style="color: #6c6b6b;"></i>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <% if admin_signed_in? %>
+              <ul class="navbar-nav ml-4">
+                <li class="nav-item">
+                  <%= link_to admin_dashboards_path, class:"nav-link" do %>
+                    <span>Users</span>
+                  <% end %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to admin_categories_path, class:"nav-link" do %>
+                    <span>Category</span>
+                  <% end %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to destroy_admin_session_path,class:"nav-link", method: :delete do %>
+                    <span class="mr-2">Log out</span><i class="fa-solid fa-right-from-bracket" style="color: #6c6b6b;"></i>
+                  <% end %>
+                </li>
+              </ul>
+            <% end %>
           </div>
-        <% end %>
-      </div>
-    </div>
-  <% end %>
+        </div>
+      </navi>
+    </header>
 
-  <div class="container">
-    <% flash.each do |message_type, message| %>
-      <div class="flash-message  <%= message_type %>">
-        <%= message %>
+    <% if admin_signed_in? %>
+      <div class="d-none d-sm-none d-md-block">
+        <div class="container mb-3">
+          <div class="d-flex justify-content-end">
+            <%= form_with url: admin_dashboard_search_result_path, local: true, method: :get do |f| %>
+              <div class="search_form d-flex align-items-center">
+                <%= f.select :range, options_for_select([["ユーザー",'User'], ["カテゴリー",'Category']]), {}, class: "search_select" %>
+                <%= f.text_field :word, placeholder: "キーワード", class: "search_word" %>
+                <%= f.select :search, options_for_select([["部分一致","partial_match"], ["完全一致","perfect_match"], ["前方一致","forward_match"], ["後方一致","backward_match"]]), {}, class: "search_select" %>
+                <%= f.button type: "submit", class: "btn" do %>
+                  <i class="fa-solid fa-magnifying-glass fa-xl" style="color: #6699cc;"></i>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="d-block d-md-none">
+        <div class="container mb-4">
+          <%= form_with url: admin_dashboard_search_result_path, local: true, method: :get do |f| %>
+            <div class="d-flex flex-column align-items-center bg_light_gray search_area_mobile">
+              <div class="d-flex mb-2">
+                <%= f.select :range, options_for_select([["ユーザー",'User'], ["カテゴリー",'Category']]), {}, class: "search_select bg_light_gray mr-2" %>
+                <span class="border-right"></span>
+                <%= f.select :search, options_for_select([["部分一致","partial_match"], ["完全一致","perfect_match"], ["前方一致","forward_match"], ["後方一致","backward_match"]]), {}, class: "search_select bg_light_gray ml-2" %>
+              </div>
+              <div class="search_form d-flex align-items-center">
+                <%= f.text_field :word, placeholder: "キーワード", class: "search_word" %>
+                <%= f.button type: "submit", class: "btn" do %>
+                  <i class="fa-solid fa-magnifying-glass fa-xl" style="color: #6699cc;"></i>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        </div>
       </div>
     <% end %>
-  </div>
-  <div class="main mb-auto pb-5">
-    <%= yield %>
-  </div>
-  <footer class="footer_bg">
-    <div class='container'>
-    	<div class='row align-items-center'>
-      	<div class='mx-auto'>
-      	　<p class="text-white pb-4">Copyright &copy; 2024 e-Life Share.</p>
-      	</div>
-      </div>
+
+    <div class="container">
+      <% flash.each do |message_type, message| %>
+        <div class="flash-message  <%= message_type %>">
+          <%= message %>
+        </div>
+      <% end %>
     </div>
-  </footer>
-</body>
+    <div class="main mb-auto pb-5">
+      <%= yield %>
+    </div>
+    <footer class="footer_bg">
+      <div class='container'>
+      	<div class='row align-items-center'>
+        	<div class='mx-auto'>
+        	　<p class="text-white pb-4">Copyright &copy; 2024 e-Life Share.</p>
+        	</div>
+        </div>
+      </div>
+    </footer>
+  </body>
 </html>
