@@ -13,8 +13,7 @@ Rails.application.routes.draw do
 
 
   scope module: :public do
-
-  devise_for :users, controllers: { sessions: 'public/sessions' }
+    devise_for :users, controllers: { sessions: 'public/sessions' }
 
     root to: "homes#top"
     get 'about', to: 'homes#about', as: :about
@@ -40,6 +39,6 @@ Rails.application.routes.draw do
       resources :comments, only: [:create, :destroy]
       resource :favorite, only: [:create, :destroy]
     end
-
   end
+
 end

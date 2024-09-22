@@ -40,6 +40,12 @@ class Post < ApplicationRecord
     favorites.exists?(user_id: user.id)
   end
 
+
+  def self.with_counts
+    select('posts.*, (SELECT COUNT(*) FROM comments WHERE comments.post_id = posts.id) AS comments_count,
+            (SELECT COUNT(*) FROM favorites WHERE favorites.post_id = posts.id) AS favorite_count')
+  end
+
   private
 
   def category_limit

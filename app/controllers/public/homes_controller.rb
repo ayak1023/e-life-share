@@ -20,11 +20,11 @@ class Public::HomesController < ApplicationController
     when 'comments_count_desc'
       'comments_count DESC'
     when 'favorite_count_desc_created_at_desc'
-      ['favorite_count DESC', 'created_at DESC']
+      'favorite_count DESC, created_at DESC'
     when 'comments_count_desc_created_at_desc'
-      ['comments_count DESC', 'created_at DESC']
+      'comments_count DESC, created_at DESC'
     else
-      'created_at DESC' # デフォルトは投稿日が新しい順
+      'created_at DESC' # デフォルトの並び順
     end
   end
 end
