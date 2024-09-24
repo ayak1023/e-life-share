@@ -18,3 +18,12 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
+// app/javascript/packs/application.js
+$(document).on('ajax:success', '.follow_btn', function(event, data) {
+  // フォロー数を更新
+  $('.followings_count_value').text(data.followings_count);
+  $('.followers_count_value').text(data.followers_count);
+}).on('ajax:error', function(event, xhr) {
+  // エラーハンドリング
+  console.error("Error:", xhr);
+});

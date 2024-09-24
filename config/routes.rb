@@ -23,13 +23,12 @@ Rails.application.routes.draw do
 
     resources :users, only: [:index, :show, :edit, :update, :destroy] do
       resource :relationships, only: [:create, :destroy]
-        get 'followings', to: 'public/relationships#followings', as: :followings
-        get 'followers', to: 'public/relationships#followers', as: :followers
-
-      member do
-        get :favorites
+        get 'followings', to: 'relationships#followings', as: :followings
+        get 'followers', to: 'relationships#followers', as: :followers
+        member do
+          get :favorites
+        end
       end
-    end
 
     devise_scope :user do
       post "users/guest_sign_in", to: "sessions#guest_sign_in"

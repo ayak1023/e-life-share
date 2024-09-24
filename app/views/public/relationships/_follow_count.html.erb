@@ -1,0 +1,12 @@
+<div class="d-flex my-3">
+  <div class="mr-4">
+    <%= link_to user_followings_path(user), class: "follow_list_link" do %>
+      <span>フォロー <span class="followings_count_value"><%= user.followings.count %></span></span>
+    <% end %>
+  </div>
+  <div>
+    <%= link_to user_followers_path(user), class: "follow_list_link" do %>
+      <span class="mr-2">フォロワー <span class="followers_count_value"><%= user.followers.count %></span></span>
+    <% end %>
+  </div>
+</div>

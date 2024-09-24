@@ -15,22 +15,13 @@
     <% end %>
   <% end %>
 
-  <div class="d-flex my-3">
-    <div class="mr-4">
-      <%= link_to user_followings_path(user) , class: "follow_list_link" do %>
-        <span>フォロー <%= user.followings.count %></span>
-      <% end %>
-    </div>
-    <div>
-      <%= link_to user_followers_path(user) , class: "follow_list_link" do %>
-        <span class="mr-2">フォロワー <%= user.followers.count %></span>
-      <% end %>
-    </div>
+  <div class="d-flex my-3 follow_count">
+    <%= render "public/relationships/follow_count", user: user, options: { class: "" } %>
   </div>
 
-<div class="">
-  <%= render "public/relationships/follow_btn", user: user, options: { class: "" } %>
-</div>
+  <div>
+    <%= render "public/relationships/follow_btn", user: user, options: { class: "" } %>
+  </div>
 
 
   <% if user == current_user %>
