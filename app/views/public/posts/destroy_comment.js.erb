@@ -1,0 +1,4 @@
+$("#comment_<%= @comment.id %>").remove(); // 削除されたコメントをDOMから削除
+
+// コメント数を更新
+$("#comments_count").text("<%= @post.comments.count %>");

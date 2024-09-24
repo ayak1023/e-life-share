@@ -30,10 +30,12 @@
 
   <div class="d-flex flex-column col-lg-6 m-auto">
     <div class="py-4 border-bottom">
-      <%= form_with model: [@post, @comment] do |f| %>
+      <div id="comments_section">
+      <%= form_with model: [@post, @comment], local: false, id: 'comment_form' do |f| %>
         <%= f.text_area :body, rows: '3', placeholder: "コメントする" ,class: "comment_body w-100" %>
         <div><%= f.submit "送信" ,class: "btn commet_btn" %></div>
       <% end %>
+      </div>
     </div>
 
     <% @post.comments.each do |comment| %>
@@ -47,9 +49,11 @@
           </div>
           <div class="">
             <% if comment.user == current_user %>
-              <%= link_to post_comment_path(comment.post, comment), method: :delete do %>
-                <i class="fa-regular fa-trash-can fa-lg"></i>
-              <% end %>
+              <div class="comment" id="comment_<%= comment.id %>">
+                <%= link_to post_comment_path(comment.post, comment), method: :delete, remote: true do %>
+                  <i class="fa-regular fa-trash-can fa-lg"></i>
+                <% end %>
+              </div>
             <% end %>
           </div>
         </div>

@@ -18,7 +18,7 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
-// app/javascript/packs/application.js
+
 $(document).on('ajax:success', '.follow_btn', function(event, data) {
   // フォロー数を更新
   $('.followings_count_value').text(data.followings_count);
@@ -27,3 +27,25 @@ $(document).on('ajax:success', '.follow_btn', function(event, data) {
   // エラーハンドリング
   console.error("Error:", xhr);
 });
+
+document.addEventListener("turbolinks:load", function() {
+  const commentForm = document.getElementById('comment_form');
+
+  if (commentForm) {
+    commentForm.addEventListener('ajax:success', function(event) {
+      const detail = event.detail;
+      const comment = detail[0];
+      const commentsSection = document.getElementById('comments_section');
+
+      commentsSection.insertAdjacentHTML('beforeend', comment);
+
+      commentForm.reset();
+    });
+
+    commentForm.addEventListener('ajax:error', function(event) {
+      const errors = event.detail[0];
+      alert("エラーが発生しました: " + errors.join(", "));
+    });
+  }
+});
+

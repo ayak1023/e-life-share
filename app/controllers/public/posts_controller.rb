@@ -18,8 +18,6 @@ class Public::PostsController < ApplicationController
 
   def index
     @posts = Post.where(user_id: current_user.following_ids)
-
-    # ソートオプションの取得と適用
     sort_option = params[:sort] || 'created_at_desc'
     @sort_column, @sort_order = parse_sort_option(sort_option)
 
@@ -39,7 +37,6 @@ class Public::PostsController < ApplicationController
     else
       @posts = @posts.order("#{@sort_column} #{@sort_order}")
     end
-
     @posts = @posts.page(params[:page])
   end
 
@@ -55,7 +52,6 @@ class Public::PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-
     if params[:post][:remove_image] == '1'
       @post.image.purge
     end
@@ -74,8 +70,41 @@ class Public::PostsController < ApplicationController
     redirect_to mypage_path
   end
 
-  private
 
+  def create_comment
+    @post = Post.find(params[:post_id]) # post_idから投稿を取得
+    @comment = @post.comments.new(comment_params)
+    @comment.user = current_user
+    if @comment.save
+      respond_to do |format|
+        format.html { redirect_to @post }
+        format.js   # create_comment.js.erbを呼び出す
+      end
+    else
+      respond_to do |format|
+        format.html { render :show }
+        format.js   # エラーハンドリングをする場合
+      end
+    end
+  end
+
+  def destroy_comment
+    @comment = Comment.find(params[:id])
+    @post = @comment.post
+    if @comment.destroy
+      respond_to do |format|
+        format.html { redirect_to @post }
+        format.js   # destroy_comment.js.erbを呼び出す
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to @post, alert: 'コメントの削除に失敗しました。' }
+        format.js   # エラーハンドリングをする場合
+      end
+    end
+  end
+
+  private
   def is_matching_login_user
     post = Post.find(params[:id])
     unless post.user_id == current_user.id
@@ -85,6 +114,10 @@ class Public::PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :body, :image, category_ids: [])
+  end
+
+  def comment_params
+    params.require(:comment).permit(:body)
   end
 
   def parse_sort_option(option)
@@ -101,4 +134,5 @@ class Public::PostsController < ApplicationController
       ['created_at', 'DESC'] # デフォルトの並び順
     end
   end
+
 end
