@@ -2,21 +2,23 @@
   <div class="d-flex flex-row align-items-center justify-content-between">
     <div class="d-flex flex-row">
       <% if user_signed_in? %>
+      <div class="post-<%= post.id %>-favorite">
         <% if post.favorited_by?(current_user) %>
           <p>
-            <%= link_to post_favorite_path(post), method: :delete do %>
+            <%= link_to post_favorite_path(post), method: :delete, remote: true do %>
               <i class="fa-solid fa-heart fa-xl"></i>
               <span class="ml-1"><%= post.favorites.count %></span>
             <% end %>
           </p>
         <% else %>
           <p>
-            <%= link_to post_favorite_path(post), method: :post do %>
+            <%= link_to post_favorite_path(post), method: :post, remote: true do %>
               <i class="fa-regular fa-heart fa-xl"></i>
               <span class="ml-1"><%= post.favorites.count %></span>
             <% end %>
           </p>
         <% end %>
+      </div>
       <% else %>
         <div>
           <i class="fa-regular fa-heart fa-xl"></i>
