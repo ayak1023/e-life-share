@@ -5,7 +5,7 @@ class Public::FavoritesController < ApplicationController
     favorite.save
     respond_to do |format|
       format.html { redirect_back(fallback_location: post_path(@post)) }
-      format.js   # JavaScriptリクエストに対応
+      format.js
     end
   end
 
@@ -15,7 +15,7 @@ class Public::FavoritesController < ApplicationController
     favorite.destroy
     respond_to do |format|
       format.html { redirect_back(fallback_location: post_path(@post)) }
-      format.js   # JavaScriptリクエストに対応
+      format.js
     end
   end
 end

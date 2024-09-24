@@ -1,11 +1,11 @@
-<% if current_user != user %>
-  <% if current_user.following?(user) %>
-    <%= link_to user_relationships_path(user), method: :delete, class: options[:class].presence || "btn btn-outline-secondary btn-block unfollow_btn" do %>
-      <span>フォロー中</span>
-    <% end %>
-  <% else %>
-    <%= link_to user_relationships_path(user), method: :post, class: options[:class].presence || "btn btn-block following_btn" do %>
-      <span class="following_btn_txt">フォロー</span>
-    <% end %>
+<div class="follow_btn_container_<%= user.id %>">
+<% if current_user.following?(user) %>
+  <%= link_to user_relationships_path(user), method: :delete, class: options[:class].presence || "btn btn-outline-secondary btn-block unfollow_btn", remote: true do %>
+    <span>フォロー中</span>
+  <% end %>
+<% else %>
+  <%= link_to user_relationships_path(user), method: :post, class: options[:class].presence || "btn btn-block following_btn", remote: true do %>
+    <span class="following_btn_txt">フォロー</span>
   <% end %>
 <% end %>
+</div>

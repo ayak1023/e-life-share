@@ -1,0 +1,2 @@
+var userId = <%= @user.id %>; // ERBでユーザーIDを取得
+$('.follow_btn_container_' + userId).html('<%= j render "public/relationships/follow_btn", user: @user, options: { class: "" } %>');

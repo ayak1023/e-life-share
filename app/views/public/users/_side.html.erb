@@ -28,9 +28,10 @@
     </div>
   </div>
 
-  <div>
-    <%= render "public/relationships/follow_btn", user: user, options: { class: "" } %>
-  </div>
+<div class="">
+  <%= render "public/relationships/follow_btn", user: user, options: { class: "" } %>
+</div>
+
 
   <% if user == current_user %>
     <% unless user.guest_user? %>
