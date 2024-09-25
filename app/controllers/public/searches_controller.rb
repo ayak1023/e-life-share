@@ -10,7 +10,9 @@ class Public::SearchesController < ApplicationController
       flash.now[:alert] = "検索キーワードを入力してください。"
       @users = [] if @range == "User"
       @posts = [] if @range == "Post" || @range == "Category"
-      render "public/search_result" and return
+      @users = User.none.page(params[:page])
+      @posts = Post.none.page(params[:page])
+      render "public/searches/search_result" and return
     end
 
     if @range == "User"
@@ -18,7 +20,6 @@ class Public::SearchesController < ApplicationController
                    .looks(params[:search], keyword)
                    .order(created_at: :desc)
                    .page(params[:page])
-      render "public/searches/search_result"
     elsif @range == "Post"
       @posts = Post.includes(:user, :comments)
                    .looks(params[:search], keyword)
@@ -26,7 +27,6 @@ class Public::SearchesController < ApplicationController
                    .with_comments_count
                    .order(parse_sort_option(sort_option))
                    .page(params[:page])
-      render "public/searches/search_result"
     elsif @range == "Category"
       category = Category.find_by('LOWER(name) = ?', keyword.downcase)
       if category
@@ -36,10 +36,11 @@ class Public::SearchesController < ApplicationController
                          .order(parse_sort_option(sort_option))
                          .page(params[:page])
       else
-        @posts = []
+        @posts = Post.none.page(params[:page])
       end
-      render "public/searches/search_result"
     end
+
+    render "public/searches/search_result"
   end
 
   private
@@ -58,5 +59,4 @@ class Public::SearchesController < ApplicationController
       'created_at DESC' # デフォルトの並び順
     end
   end
-
 end
