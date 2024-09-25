@@ -1,7 +1,11 @@
 class Public::UsersController < ApplicationController
   before_action :is_matching_login_user, only: [:edit, :update, :destroy]
   before_action :ensure_guest_user, only: [:edit]
-
+  
+  def index
+    @users = User.all
+  end
+  
   def mypage
     sort_option = params[:sort] || 'created_at_desc'
     @sort_column, @sort_order = parse_sort_option(sort_option)
