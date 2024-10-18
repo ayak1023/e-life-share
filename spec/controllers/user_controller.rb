@@ -6,6 +6,7 @@ RSpec.describe Public::UsersController, type: :controller do
   let!(:other_user) { create(:user) }  # 他のユーザー
   let!(:post) { create(:post, user: user) }
 
+
   before do
     sign_in user  # ユーザーでログイン
   end
