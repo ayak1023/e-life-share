@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Public::CommentsController, type: :controller do
+RSpec.describe Public::SessionsController, type: :controller do
 
   before do
      @guest_user = create(:user, :guest)
