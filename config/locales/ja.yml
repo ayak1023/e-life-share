@@ -1,8 +1,4 @@
 ja:
-  views:
-    pagination:
-      next: "Next"
-
   activerecord:
       errors:
         models:
