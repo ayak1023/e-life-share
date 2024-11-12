@@ -294,7 +294,7 @@ DEPENDENCIES
   capybara (>= 3.26)
   devise
   dotenv-rails
-  enum_help
+  enum_help (= 0.0.19)
   image_processing (~> 1.2)
   jbuilder (~> 2.7)
   kaminari (~> 1.2.1)
