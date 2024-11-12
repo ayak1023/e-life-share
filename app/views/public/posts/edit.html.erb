@@ -26,7 +26,7 @@
       <div class="d-flex flex-row justify-content-center">
         <div class="col pl-0">
           <div class="mx-auto">
-            <h5 class="mb-2">Image</h5>
+            <h5 class="mb-2">画像</h5>
             <div class="mb-2">
               <% if @post.image.attached? %>
                 <div class="mb-2">
@@ -43,7 +43,7 @@
               <% end %>
             </div>
             <div class="pt-2">
-              <%= f.label :image, class: "form-label", style: "cursor: pointer;" do %>
+              <%= f.label :Image, class: "f_label_font", style: "cursor: pointer;" do %>
                 <%= f.file_field :image, accept: "image/*", class: "form-control-file", style: "display: none;" %>
                 <span class="img_select_btn">新しい画像を選択</span>
               <% end %>
@@ -52,11 +52,11 @@
         </div>
         <div class="col pr-0">
           <div class="mb-2">
-            <h5 class="mb-2">Title</h5>
+            <%= f.label :Title ,class:"f_label_font" %><br />
             <%= f.text_field :title ,class:"form-control" %>
           </div>
           <div class="mb-2">
-            <h5 class="mb-2">Body</h5>
+            <%= f.label :Body ,class:"f_label_font" %><br />
             <%= f.text_area :body ,class:"form-control" %>
           </div>
 

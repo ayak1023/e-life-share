@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row-cols-lg-3 row-cols-md-2">
-    <h1>Log in</h1>
+    <h1 class="my-4">Log in</h1>
     <%= form_with model: @user, url: user_session_path do |f| %>
       <div class="field my-2 w-100">
         <%= f.label :email ,class:"f_label_font" %><br />
@@ -12,19 +12,12 @@
         <%= f.password_field :password, autocomplete: "current-password" ,class:"w-100"%>
       </div>
 
-      <% if devise_mapping.rememberable? %>
-        <div class="field my-2 w-100">
-          <%= f.check_box :remember_me %>
-          <%= f.label :remember_me %>
-        </div>
-      <% end %>
-
-      <div class="actions my-2 w-100">
-        <%= f.submit "Log in" ,class:"btn btn_bg_b btn-block"%>
+      <div class="actions mt-4 mb-2 w-100">
+        <%= f.submit "ログインする" ,class:"btn btn_bg_b btn-block  fs_1_2"%>
       </div>
     <% end %>
     <div class="my-2">
-      <%= link_to "Sign up", new_registration_path(resource_name) %>
+      <%= link_to "サインアップする", new_registration_path(resource_name) %>
     </div>
 
     <div class="my-5">

@@ -1,0 +1,93 @@
+ja:
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              taken: "メールアドレスは既に使用されています。"
+              blank: "メールアドレスが入力されていません。"
+              too_short: "メールアドレスは%{count}文字以上に設定して下さい。"
+              too_long: "メールアドレスは%{count}文字以下に設定して下さい。"
+              invalid: "メールアドレスが有効でありません。"
+            password:
+              taken: "パスワードは既に使用されています。"
+              blank: "パスワードが入力されていません。"
+              too_short: "パスワードは%{count}文字以上に設定して下さい。"
+              too_long: "パスワードは%{count}文字以下に設定して下さい。"
+              invalid: "パスワードが有効でありません。"
+              confirmation: "パスワードが確認とあっていません。"
+    attributes:
+      user:
+        current_password: "現在のパスワード"
+        name: "名前"
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "確認用パスワード"
+        remember_me: "ログイン情報を記録する"
+    models:
+      user: "ユーザー"
+
+  devise:
+    confirmations:
+      confirmed: "メールアドレスが正常に確認されました。"
+      send_instructions: "メールアドレス確認のための指示が記載されたメールが数分内に届きます。"
+      send_paranoid_instructions: "メールアドレスがデータベースに存在する場合、確認手順が記載されたメールが届きます。"
+    failure:
+      already_authenticated: "既にサインインしています。"
+      inactive: "アカウントはまだ有効化されていません。"
+      invalid: "%{authentication_keys} またはパスワードが無効です。"
+      locked: "アカウントはロックされています。"
+      last_attempt: "あと1回の試行でアカウントがロックされます。"
+      not_found_in_database: "%{authentication_keys} またはパスワードが無効です。"
+      timeout: "セッションが期限切れです。再度サインインしてください。"
+      unauthenticated: "続行するにはサインインまたはサインアップが必要です。"
+      unconfirmed: "メールアドレスを確認してから続行してください。"
+    mailer:
+      confirmation_instructions:
+        subject: "確認手順"
+      reset_password_instructions:
+        subject: "パスワードリセット手順"
+      unlock_instructions:
+        subject: "アカウント解除手順"
+      email_changed:
+        subject: "メールアドレス変更"
+      password_change:
+        subject: "パスワード変更"
+    omniauth_callbacks:
+      failure: "%{kind} で認証できませんでした: \"%{reason}\""
+      success: "%{kind} アカウントから正常に認証されました。"
+    passwords:
+      no_token: "パスワードリセットメールから来ていない場合、このページにはアクセスできません。リセットメールから来ている場合は、提供されたURLを完全に使用したことを確認してください。"
+      send_instructions: "パスワードリセット手順が記載されたメールが数分内に届きます。"
+      send_paranoid_instructions: "メールアドレスがデータベースに存在する場合、パスワード回復リンクがメールで届きます。"
+      updated: "パスワードが正常に変更されました。現在サインインしています。"
+      updated_not_active: "パスワードが正常に変更されました。"
+    registrations:
+      destroyed: "アカウントは正常に削除されました。またのご利用をお待ちしています。"
+      signed_up: "ようこそ！正常にサインアップしました。"
+      signed_up_but_inactive: "正常にサインアップしましたが、アカウントはまだ有効化されていません。"
+      signed_up_but_locked: "正常にサインアップしましたが、アカウントがロックされているためサインインできませんでした。"
+      signed_up_but_unconfirmed: "確認リンクがメールアドレスに送信されました。リンクをクリックしてアカウントを有効化してください。"
+      update_needs_confirmation: "アカウントは正常に更新されましたが、新しいメールアドレスを確認する必要があります。確認リンクが記載されたメールを確認してください。"
+      updated: "アカウントは正常に更新されました。"
+      updated_but_not_signed_in: "アカウントは正常に更新されましたが、パスワードが変更されたため、再度サインインが必要です。"
+    sessions:
+      signed_in: "正常にサインインしました。"
+      signed_out: "正常にサインアウトしました。"
+      already_signed_out: "正常にサインアウトしました。"
+    unlocks:
+      send_instructions: "アカウント解除手順が記載されたメールが数分内に届きます。"
+      send_paranoid_instructions: "アカウントが存在する場合、解除手順が記載されたメールが届きます。"
+      unlocked: "アカウントが正常に解除されました。サインインして続行してください。"
+  errors:
+    messages:
+      already_confirmed: "既に確認済みです。サインインを試みてください。"
+      confirmation_period_expired: "%{period}以内に確認が必要です。新しい確認リンクをリクエストしてください。"
+      expired: "期限切れです。新しいリンクをリクエストしてください。"
+      not_found: "見つかりません。"
+      not_locked: "ロックされていません。"
+      not_saved:
+        one: "「%{resource}」は登録できませんでした。1件のエラーが原因です。"
+        other: "「%{resource}」は登録できませんでした。%{count}件のエラーが原因です。"
+

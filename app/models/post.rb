@@ -9,7 +9,6 @@ class Post < ApplicationRecord
 
   validates :title, presence: true
   validates :body, presence: true
-  #validates :name, presence: true
   validate :category_limit
 
 
@@ -50,9 +49,9 @@ class Post < ApplicationRecord
 
   def category_limit
     if category_ids.empty?
-      errors.add(:category_ids, 'At least one category must be selected.')
+      errors.add(:category_ids, '少なくとも1つのカテゴリーを選択してください。')
     elsif category_ids.length > 3
-      errors.add(:category_ids, 'You can select up to 3 categories.')
+      errors.add(:category_ids, 'カテゴリーは最大3つまで選択可能です。')
     end
   end
 

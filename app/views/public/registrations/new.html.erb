@@ -1,9 +1,11 @@
 <div class="container">
-  <div class="row-cols-lg-3 row-cols-md-2">
+  <div>
     <h1>Sign up</h1>
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-      <%= render "public/shared/error_messages", resource: resource %>
-      <div class="mt-4 w-100">
+      <div class="row-cols-lg-1 row-cols-md-1 my-3">
+        <%= render "public/shared/error_messages", resource: resource %>
+      </div>
+      <div class="row-cols-lg-3 row-cols-md-2 mt-4 w-100">
         <div class="field my-2">
           <div><%= f.label :name ,class:"f_label_font" %></div>
           <div><%= f.text_field :name ,class:"w-100"%></div>
@@ -30,13 +32,13 @@
         </div>
 
         <div class="actions pt-4 w-100">
-          <%= f.submit "Sign up" ,class:"btn btn_bg_b w-100" %>
+          <%= f.submit "登録する" ,class:"btn btn_bg_b w-100 fs_1_2" %>
         </div>
       </div>
     <% end %>
 
     <div class="my-2">
-      <%= render "public/shared/links" %>
+      <%= link_to "ログインする",new_user_session_path %>
     </div>
   </div>
 </div>
