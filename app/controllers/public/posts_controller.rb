@@ -72,18 +72,18 @@ class Public::PostsController < ApplicationController
 
 
   def create_comment
-    @post = Post.find(params[:post_id]) # post_idから投稿を取得
+    @post = Post.find(params[:post_id])
     @comment = @post.comments.new(comment_params)
     @comment.user = current_user
     if @comment.save
       respond_to do |format|
         format.html { redirect_to @post }
-        format.js   # create_comment.js.erbを呼び出す
+        format.js
       end
     else
       respond_to do |format|
         format.html { render :show }
-        format.js   # エラーハンドリングをする場合
+        format.js
       end
     end
   end
@@ -94,12 +94,12 @@ class Public::PostsController < ApplicationController
     if @comment.destroy
       respond_to do |format|
         format.html { redirect_to @post }
-        format.js   # destroy_comment.js.erbを呼び出す
+        format.js
       end
     else
       respond_to do |format|
         format.html { redirect_to @post, alert: 'コメントの削除に失敗しました。' }
-        format.js   # エラーハンドリングをする場合
+        format.js
       end
     end
   end

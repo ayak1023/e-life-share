@@ -31,39 +31,16 @@
   <div class="d-flex flex-column col-lg-6 m-auto">
     <div class="py-4 border-bottom">
       <div id="comments_section">
-      <%= form_with model: [@post, @comment], local: false, id: 'comment_form' do |f| %>
-        <%= f.text_area :body, rows: '3', placeholder: "コメントする" ,class: "comment_body w-100" %>
-        <div><%= f.submit "送信" ,class: "btn commet_btn" %></div>
-      <% end %>
+        <%= form_with(model: [@post, @comment], local: false) do |f| %>
+          <%= f.text_area :body, rows: '3', placeholder: "コメントする" ,class: "comment_body w-100" %>
+          <div><%= f.submit "送信" ,class: "btn commet_btn" %></div>
+        <% end %>
       </div>
     </div>
 
-    <% @post.comments.each do |comment| %>
-      <div class="py-2 border-bottom">
-        <div class="d-flex flex-row align-items-center justify-content-between ">
-          <div>
-            <%= link_to user_path(comment.user) do %>
-              <%= image_tag comment.user.get_profile_image(40,40) ,style: "width: 40px; height: 40px; object-fit: cover;"%>
-              <span class="ml-1"><%= comment.user.name %></span>
-            <% end %>
-          </div>
-          <div class="">
-            <% if comment.user == current_user %>
-              <div class="comment" id="comment_<%= comment.id %>">
-                <%= link_to post_comment_path(comment.post, comment), method: :delete, remote: true do %>
-                  <i class="fa-regular fa-trash-can fa-lg"></i>
-                <% end %>
-              </div>
-            <% end %>
-          </div>
-        </div>
-        <div class="p-2"><%= comment.body %></div>
-        <div class="text-right">
-          <p class="fs_08"><%= comment.created_at.strftime('%Y/%m/%d') %></p>
-        </div>
-
-      </div>
-    <% end %>
+    <div id="show_comments">
+        <%= render 'public/posts/show_comment_list', post: @post %>
+    </div>
   </div>
 
 

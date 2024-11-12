@@ -1,0 +1,6 @@
+<div class="ml-4">
+  <%= link_to post_path(post.id) do %>
+    <i class="fa-regular fa-comment fa-xl"></i>
+    <span id="comments_count" class="ml-1"><%= post.comments.count %></span>
+  <% end %>
+</div>

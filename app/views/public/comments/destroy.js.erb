@@ -1,0 +1,3 @@
+$("textarea").val('');
+$('#comment_<%= @comment.id %>').remove();
+$('#comments_count').text("<%= @post.comments.count %>");
